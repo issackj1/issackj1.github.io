@@ -84,9 +84,8 @@ export class AboutMe extends LitElement {
 
   @property({ type: String }) aboutTitle = 'Get In Touch';
   @property({ type: String }) bioPart1 = "I build responsive, performant, and accessible digital experiences.";
-  @property({ type: String }) email = 'your.email@example.com';
-  @property({ type: String }) linkedinUrl = 'https://linkedin.com/in/yourprofile';
-  @property({ type: String }) githubUrl = 'https://github.com/yourusername';
+  @property({ type: String }) linkedinUrl = 'https://www.linkedin.com/in/issack-john/';
+  @property({ type: String }) githubUrl = 'https://github.com/issackj1';
 
   render() {
     return html`
@@ -94,7 +93,6 @@ export class AboutMe extends LitElement {
         <h2>${this.aboutTitle}</h2>
         <p class="bio-part1">${this.bioPart1}</p>
         <div class="contact-links">
-          ${this.email ? html`<a href="mailto:${this.email}" class="accent-button">Email Me</a>` : ''}
           ${this.linkedinUrl ? html`<a href="${this.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn</a>` : ''}
           ${this.githubUrl ? html`<a href="${this.githubUrl}" target="_blank" rel="noopener noreferrer" class="text-link">GitHub</a>` : ''}
         </div>
