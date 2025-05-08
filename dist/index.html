@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <meta name="description" content="A portfolio showcasing shipped products and projects.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Portfolio">
+    <meta property="og:description" content="A portfolio showcasing shipped products and projects.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourusername.github.io/"> <!-- Replace with actual URL -->
+    <!-- <meta property="og:image" content="https://yourusername.github.io/og-image.jpg"> --> <!-- Replace with actual image URL -->
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- <meta name="twitter:site" content="@yourtwitterhandle"> --> <!-- Optional: Twitter handle -->
+    <meta name="twitter:title" content="Portfolio">
+    <meta name="twitter:description" content="A portfolio showcasing shipped products and projects.">
+    <!-- <meta name="twitter:image" content="https://yourusername.github.io/twitter-card-image.jpg"> --> <!-- Replace with actual image URL -->
+
+    <link rel="preload" href="/fonts/GeistVF.woff2" as="font" type="font/woff2" crossorigin> <!-- Adjust path if self-hosting Geist Sans -->
+
+    <style>
+        :root {
+            /* Light Theme Variables (Defaults) */
+            --page-bg: #F5F7F9;
+            --card-bg: #FFFFFF;
+            --text-color: #1E1E1E;
+            --accent-color-rgb: 79, 70, 229; /* Indigo-500 #4F46E5 */
+            --accent-color: rgb(var(--accent-color-rgb));
+            --hero-bg-color-wash: rgba(var(--accent-color-rgb), 0.1);
+            --footer-bg-color: #E5E7EB; /* Keeping previous footer color for now, can be adjusted */
+            --footer-text-color: #4B5563;
+            --max-width: 72rem;
+            --font-primary: 'Geist Sans', 'Inter Tight', 'Inter var', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            --button-shadow-hover: 0 4px 12px rgba(var(--accent-color-rgb), 0.3), 0 2px 6px rgba(var(--accent-color-rgb), 0.2);
+            --card-content-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
+            --card-content-radius: 12px;
+        }
+
+        :root[data-theme="dark"] {
+            /* Dark Theme Variables */
+            --page-bg: #0E1014;
+            --card-bg: #1F2937; /* A bit lighter than pure black for cards */
+            --text-color: #E8EAED;
+            --accent-color-rgb: 99, 102, 241; /* Indigo-400 #6366F1 */
+            --accent-color: rgb(var(--accent-color-rgb));
+            --hero-bg-color-wash: rgba(var(--accent-color-rgb), 0.1);
+            --footer-bg-color: #0E1014; /* Match dark page bg or slightly different */
+            --footer-text-color: #9CA3AF;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--page-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1rem; 
+        }
+        /* Add more global styles or resets here if needed */
+    </style>
+    <script type="module" src="./index.ts"></script>
+</head>
+<body>
+    <theme-toggle></theme-toggle>
+    <main>
+        <hero-section></hero-section>
+        <project-grid></project-grid>
+        <timeline-list></timeline-list>
+        <about-me></about-me>
+    </main>
+    <footer-bar></footer-bar>
+</body>
+</html> 

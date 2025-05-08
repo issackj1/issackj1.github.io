@@ -1,0 +1,40 @@
+[
+  {
+    "id": "portfolio-v1-release",
+    "date": "2025-05-07",
+    "title": "Portfolio v1 Launch",
+    "description": "Initial release of my GitHub-Pages portfolio built with Lit, showcasing shipped projects and a live shipping timeline.",
+    "type": "release"
+  },
+  {
+    "id": "release-1",
+    "date": "2024-07-15",
+    "title": "Product Hunt Launch - Awesome Tool v2.0",
+    "description": "Successfully launched v2.0 of Awesome Tool on Product Hunt, reaching #3 Product of the Day.",
+    "link": "https://www.producthunt.com/",
+    "type": "release"
+  },
+  {
+    "id": "pr-52",
+    "date": "2024-06-28",
+    "title": "Merged PR #52: Feature - User Authentication",
+    "description": "Implemented OAuth 2.0 for secure user authentication, improving overall application security.",
+    "link": "https://github.com/yourusername/your-repo/pull/52",
+    "type": "pr"
+  },
+  {
+    "id": "milestone-q2",
+    "date": "2024-06-01",
+    "title": "Q2 Milestone: Core Feature Set Complete",
+    "description": "All primary features for the initial release candidate are now complete and tested.",
+    "type": "milestone"
+  },
+  {
+    "id": "release-0",
+    "date": "2024-04-10",
+    "title": "Shipped Side Project: QuickNote App",
+    "description": "Developed and deployed a minimalist note-taking PWA over a weekend.",
+    "link": "https://example.com/quicknote",
+    "type": "release"
+  }
+] 
