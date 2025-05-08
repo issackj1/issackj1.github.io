@@ -257,7 +257,7 @@ var St=Object.defineProperty;var Ct=Object.getOwnPropertyDescriptor;var a=(s,t,e
       opacity: 0.8;
     }
   `,a([h({type:String})],$.prototype,"title",2),a([h({type:String})],$.prototype,"role",2),a([h({type:String})],$.prototype,"imageUrl",2),a([h({type:Array})],$.prototype,"techStack",2),a([h({type:String})],$.prototype,"liveDemoLink",2),a([h({type:String})],$.prototype,"githubRepoLink",2),$=a([_("project-card")],$);var x=class extends m{constructor(){super(...arguments);this.projectsDataSrc="/data/projects.json";this.gridTitle="Featured Projects";this._projects=[];this._isLoadingProjects=!0;this._projectsError=null}connectedCallback(){super.connectedCallback(),this._fetchProjects()}async _fetchProjects(){this._isLoadingProjects=!0,this._projectsError=null;try{let e=await fetch(this.projectsDataSrc);if(!e.ok)throw new Error(`HTTP error! status: ${e.status} - ${e.statusText}`);this._projects=await e.json()}catch(e){console.error("Error fetching project data:",e),this._projectsError="Failed to load projects. Please check the console."}finally{this._isLoadingProjects=!1}}render(){return this._isLoadingProjects?c`<div class="loading-message">Loading projects...</div>`:this._projectsError?c`<div class="error-message">${this._projectsError}</div>`:this._projects.length===0?c`<div class="no-items-message">No projects to display yet.</div>`:c`
-      <section class="projects-section-container" id="projects" style="scroll-margin-top: 6rem;">
+      <section class="projects-section-container" style="scroll-margin-top: 6rem;">
         ${this.gridTitle?c`<h2>${this.gridTitle}</h2>`:""}
         <div class="grid-container">
           ${this._projects.map(e=>c`
