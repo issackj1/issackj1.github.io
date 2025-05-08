@@ -38,7 +38,7 @@ export class FooterBar extends LitElement {
     return html`
       <div class="footer-content">
         <div class="legal-text">
-          &copy; ${new Date().getFullYear()} Your Name. All rights reserved. 
+          &copy; ${new Date().getFullYear()} Issack John. All rights reserved. 
         </div>
       </div>
     `;

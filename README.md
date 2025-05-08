@@ -52,17 +52,6 @@ This is a clean, minimal, and impactful GitHub Pages website built with Lit to s
 -   The main TypeScript entry point that imports all components is `src/index.ts`.
 -   Timeline data is in `data/releases.json`.
 
-## Configuration
-
--   **GitHub Pages:** Ensure your repository settings are configured to deploy from the `gh-pages` branch (this will be handled by the GitHub Action) or from the `/docs` folder on `main` if you prefer a different setup (though the Action is set for branch deployment).
--   **Custom Domain:** Follow GitHub's documentation to set up a custom domain. Remember to use a `www` CNAME for better performance.
--   **Content:**
-    -   Update `src/index.html` with your correct Open Graph URLs and Twitter handle.
-    -   Modify placeholder content in `src/components/hero-section.ts`, `src/components/project-grid.ts` (project data), and `src/components/about-me.ts`.
-    -   Populate `data/releases.json` with your actual shipping timeline.
-    -   Update `your.email@example.com` and `https://linkedin.com/in/yourprofile` in `src/components/about-me.ts`.
-    -   Update `Your Name` in `src/components/footer-bar.ts`.
-
 ## GitHub Actions Workflow
 
 The workflow in `.github/workflows/deploy.yml` will:
