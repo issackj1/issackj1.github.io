@@ -1,0 +1,9 @@
+[
+  {
+    "id": "portfolio-v1-release",
+    "date": "2025-05-07",
+    "title": "Portfolio v1 Launch",
+    "description": "Initial release of my GitHub-Pages portfolio built with Lit, showcasing shipped projects and a live shipping timeline.",
+    "type": "release"
+  }
+] 

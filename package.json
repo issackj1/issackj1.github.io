@@ -1,0 +1,31 @@
+{
+  "name": "lit-portfolio",
+  "version": "1.0.0",
+  "description": "A Lit-powered portfolio on GitHub Pages",
+  "main": "src/index.html",
+  "scripts": {
+    "build": "rimraf docs && esbuild src/index.ts --bundle --minify --outfile=docs/bundle.js --format=esm && copyfiles -u 1 public/**/* docs && copyfiles -f src/index.html docs && copyfiles -u 1 data/**/* docs/data && copyfiles -u 1 assets/**/* docs/assets",
+    "serve": "npx serve docs",
+    "dev": "wds",
+    "deploy": "npm run build && gh-pages -d docs"
+  },
+  "keywords": [
+    "lit",
+    "portfolio",
+    "github-pages"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "^3.3.0"
+  },
+  "devDependencies": {
+    "@web/dev-server": "^0.4.6",
+    "@web/dev-server-esbuild": "^1.0.4",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.19.0",
+    "gh-pages": "^6.3.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.8.3"
+  }
+}
