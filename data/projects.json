@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Personal Portfolio",
+    "role": "Design & Full-stack Dev",
+    "techStack": ["Lit", "GitHub Pages", "ESBuild", "GitHub Actions"],
+    "imageUrl": "/assets/portfolio-thumb.webp",
+    "liveDemoLink": "https://issackj1.github.io",
+    "githubRepoLink": "https://github.com/issackj1/issackj1.github.io"
+  }
+] 

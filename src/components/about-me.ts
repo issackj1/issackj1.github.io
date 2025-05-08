@@ -87,7 +87,6 @@ export class AboutMe extends LitElement {
 
   @property({ type: String }) aboutTitle = 'Get In Touch';
   @property({ type: String }) bioPart1 = "I build responsive, performant, and accessible digital experiences.";
-  @property({ type: String }) bioPart2 = "Currently seeking new opportunities where I can contribute to meaningful products. Let's create something amazing together!";
   @property({ type: String }) email = 'your.email@example.com';
   @property({ type: String }) linkedinUrl = 'https://linkedin.com/in/yourprofile';
   @property({ type: String }) githubUrl = 'https://github.com/yourusername';
@@ -97,7 +96,6 @@ export class AboutMe extends LitElement {
       <section class="about-section-container" id="about" style="scroll-margin-top: 6rem;">
         <h2>${this.aboutTitle}</h2>
         <p class="bio-part1">${this.bioPart1}</p>
-        <p class="bio-part2">${this.bioPart2}</p>
         <div class="contact-links">
           ${this.email ? html`<a href="mailto:${this.email}" class="accent-button">Email Me</a>` : ''}
           ${this.linkedinUrl ? html`<a href="${this.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn</a>` : ''}

@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import './project-card.ts'; // Import the project-card component
 
 // Define a type for individual project data
@@ -28,6 +28,8 @@ export class ProjectGrid extends LitElement {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1rem;
+      justify-content: center; /* Centers grid tracks if their total width is less than container */
+      justify-items: center; /* ADDED: Centers items within their grid cells */
       /* max-width is now on .projects-section-container */
     }
     h2 {
@@ -46,51 +48,64 @@ export class ProjectGrid extends LitElement {
         scroll-snap-align: start;
     }
     */
+    .loading-message, .error-message, .no-items-message {
+      text-align: center;
+      padding: 1rem;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
   `;
 
-  @property({ type: Array })
-  projects: ProjectData[] = [
-    {
-      title: "Personal Portfolio",
-      role: "Design & Full-stack Dev",
-      techStack: ["Lit", "GitHub Pages", "ESBuild", "GitHub Actions"],
-      imageUrl: "/assets/portfolio-thumb.webp",
-      liveDemoLink: "https://<username>.github.io",
-      githubRepoLink: "https://github.com/<username>/<repo>"
-    },
-    {
-      title: 'E-commerce Platform',
-      role: 'Lead Frontend Developer',
-      imageUrl: 'https://via.placeholder.com/400x300.png?text=Project+Catalyst',
-      liveDemoLink: '#',
-      githubRepoLink: '#',
-      techStack: ['Lit', 'TypeScript', 'GraphQL', 'Storybook']
-    },
-    {
-      title: 'Data Analytics Dashboard',
-      role: 'Full-Stack Developer',
-      imageUrl: 'https://via.placeholder.com/400x300.png?text=Project+Insight',
-      liveDemoLink: '#',
-      techStack: ['Python', 'Flask', 'React', 'D3.js']
-    },
-    {
-      title: 'Mobile Task Manager',
-      role: 'UX/UI Designer & Developer',
-      imageUrl: 'https://via.placeholder.com/400x300.png?text=Project+Flow',
-      githubRepoLink: '#',
-      techStack: ['Flutter', 'Firebase', 'Figma']
-    }
-  ];
+  @property({ type: String })
+  projectsDataSrc = '/data/projects.json'; // Path to the new JSON file
 
   @property({ type: String })
   gridTitle = 'Featured Projects';
 
+  @state() private _projects: ProjectData[] = [];
+  @state() private _isLoadingProjects = true;
+  @state() private _projectsError: string | null = null;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this._fetchProjects();
+  }
+
+  async _fetchProjects() {
+    this._isLoadingProjects = true;
+    this._projectsError = null;
+    try {
+      const response = await fetch(this.projectsDataSrc);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+      }
+      this._projects = await response.json();
+    } catch (error: any) {
+      console.error('Error fetching project data:', error);
+      this._projectsError = 'Failed to load projects. Please check the console.';
+    } finally {
+      this._isLoadingProjects = false;
+    }
+  }
+
   render() {
+    if (this._isLoadingProjects) {
+      return html`<div class="loading-message">Loading projects...</div>`;
+    }
+
+    if (this._projectsError) {
+      return html`<div class="error-message">${this._projectsError}</div>`;
+    }
+
+    if (this._projects.length === 0) {
+      return html`<div class="no-items-message">No projects to display yet.</div>`;
+    }
+
     return html`
       <section class="projects-section-container" id="projects" style="scroll-margin-top: 6rem;">
         ${this.gridTitle ? html`<h2>${this.gridTitle}</h2>` : ''}
         <div class="grid-container">
-          ${this.projects.map(
+          ${this._projects.map(
             (project) => html`
               <project-card
                 .title=${project.title}

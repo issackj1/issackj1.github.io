@@ -238,7 +238,3 @@ export class HeroSection extends LitElement {
     `;
   }
 }
-
-// Define the metrics-counter component separately
-// For now, this hero-section assumes metrics-counter is available globally
-// or imported if this file becomes part of a larger bundle entry point (e.g. index.ts) 
