@@ -21,5 +21,21 @@
     "description": "Launched the Meme Genius AI website, featuring a gallery of AI-generated memes.",
     "link": "https://meme-genius-ai.vercel.app/",
     "type": "release"
+  },
+  {
+    "id": "ufc-calendar-landing-page-launch",
+    "date": "2021-05-18",
+    "title": "UFC Calendar Landing Page Launched",
+    "description": "Launched the official landing page for the UFC Calendar project at ufccalendar.tech.",
+    "link": "https://ufccalendar.tech/",
+    "type": "release"
+  },
+  {
+    "id": "ufc-calendar-extension-launch",
+    "date": "2021-05-10",
+    "title": "UFC Calendar Extension Launched",
+    "description": "Launched the UFC Calendar Chrome Extension, providing live updates and event details for UFC fans.",
+    "link": "https://chromewebstore.google.com/detail/pdagojbjdekpdicaefbiolkpgobiaoch",
+    "type": "release"
   }
 ] 

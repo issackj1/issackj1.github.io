@@ -22,5 +22,21 @@
     "imageUrl": "/assets/meme-genius-ai-x-thumb.webp",
     "liveDemoLink": "https://x.com/MemeGeniusAI",
     "githubRepoLink": ""
+  },
+  {
+    "title": "UFC Calendar (Extension & API)",
+    "role": "Design & Full-stack Dev",
+    "techStack": ["TypeScript", "Chrome Extension APIs", "Node.js", "Python", "Serverless Framework", "AWS Lambda", "DynamoDB", "Material-UI", "Discord Webhooks", "Docker"],
+    "imageUrl": "/assets/ufc-extension-thumb.webp",
+    "liveDemoLink": "https://chromewebstore.google.com/detail/pdagojbjdekpdicaefbiolkpgobiaoch",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "UFC Calendar Landing Page",
+    "role": "Design & Full-stack Dev",
+    "techStack": ["React", "Material-UI (MUI)", "Vercel"],
+    "imageUrl": "/assets/ufc-landingpage-thumb.webp",
+    "liveDemoLink": "https://ufccalendar.tech/",
+    "githubRepoLink": ""
   }
 ] 
