@@ -4,10 +4,10 @@
   "description": "A Lit-powered portfolio on GitHub Pages",
   "main": "src/index.html",
   "scripts": {
-    "build": "rimraf dist && esbuild src/index.ts --bundle --minify --outfile=dist/bundle.js --format=esm && copyfiles -u 1 public/**/* dist && copyfiles -f src/index.html dist && copyfiles -u 1 data/**/* dist/data && copyfiles -u 1 assets/**/* dist/assets",
-    "serve": "npx serve dist",
+    "build": "rimraf docs && esbuild src/index.ts --bundle --minify --outfile=docs/bundle.js --format=esm && copyfiles -u 1 public/**/* docs && copyfiles -f src/index.html docs && copyfiles -u 1 data/**/* docs/data && copyfiles -u 1 assets/**/* docs/assets",
+    "serve": "npx serve docs",
     "dev": "wds",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d docs"
   },
   "keywords": [
     "lit",
