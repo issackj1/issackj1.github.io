@@ -102,7 +102,7 @@ export class ProjectGrid extends LitElement {
     }
 
     return html`
-      <section class="projects-section-container" id="projects" style="scroll-margin-top: 6rem;">
+      <section class="projects-section-container" style="scroll-margin-top: 6rem;">
         ${this.gridTitle ? html`<h2>${this.gridTitle}</h2>` : ''}
         <div class="grid-container">
           ${this._projects.map(
