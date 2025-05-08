@@ -16,10 +16,10 @@
     "githubRepoLink": ""
   },
   {
-    "title": "My First Worker - Automated Twitter Content Poster",
+    "title": "Meme Genius AI - Automated X Content Poster",
     "role": "Design & Full-stack Dev",
     "techStack": ["TypeScript", "Cloudflare Workers", "X API", "OpenAI API", "Cloudflare KV", "Wrangler", "Vitest"],
-    "imageUrl": "/assets/meme-genius-ai-twitter-thumb.webp",
+    "imageUrl": "/assets/meme-genius-ai-x-thumb.webp",
     "liveDemoLink": "https://x.com/MemeGeniusAI",
     "githubRepoLink": ""
   }

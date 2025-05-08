@@ -5,5 +5,21 @@
     "title": "Portfolio v1 Launch",
     "description": "Initial release of my GitHub-Pages portfolio built with Lit, showcasing shipped projects and a live shipping timeline.",
     "type": "release"
+  },
+  {
+    "id": "my-first-worker-launch",
+    "date": "2025-04-29",
+    "title": "Automated Twitter Content Poster Launched",
+    "description": "Launched the Cloudflare Worker for automated Twitter content posting, featuring AI-generated text and images.",
+    "link": "",
+    "type": "release"
+  },
+  {
+    "id": "meme-genius-ai-website-launch",
+    "date": "2024-01-27",
+    "title": "Meme Genius AI Website Launched",
+    "description": "Launched the Meme Genius AI website, featuring a gallery of AI-generated memes.",
+    "link": "https://meme-genius-ai.vercel.app/",
+    "type": "release"
   }
 ] 
