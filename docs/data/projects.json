@@ -2,9 +2,25 @@
   {
     "title": "Personal Portfolio",
     "role": "Design & Full-stack Dev",
-    "techStack": ["Lit", "GitHub Pages", "ESBuild", "GitHub Actions"],
+    "techStack": ["Lit", "TypeScript", "GitHub Pages", "ESBuild", "GitHub Actions", "CSS"],
     "imageUrl": "/assets/portfolio-thumb.webp",
     "liveDemoLink": "https://issackj1.github.io",
     "githubRepoLink": "https://github.com/issackj1/issackj1.github.io"
+  },
+  {
+    "title": "Meme Genius AI",
+    "role": "Design & Full-stack Dev",
+    "techStack": ["Vercel", "Next.js", "TypeScript", "CSS"],
+    "imageUrl": "/assets/meme-genius-ai-thumb.webp",
+    "liveDemoLink": "https://meme-genius-ai.vercel.app/",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "Meme Genius AI - Automated X Content Poster",
+    "role": "Design & Full-stack Dev",
+    "techStack": ["TypeScript", "Cloudflare Workers", "X API", "OpenAI API", "Cloudflare KV", "Wrangler", "Vitest"],
+    "imageUrl": "/assets/meme-genius-ai-x-thumb.webp",
+    "liveDemoLink": "https://x.com/MemeGeniusAI",
+    "githubRepoLink": ""
   }
 ] 

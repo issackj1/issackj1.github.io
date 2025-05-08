@@ -98,14 +98,14 @@ export class ProjectCard extends LitElement {
 
     .tech-tag {
       display: inline-block;
-      background-color: rgba(var(--accent-color-rgb), 0.1);
-      color: var(--accent-color);
+      /* background-color and color will be set by inline styles */
       padding: 0.25rem 0.5rem;
       border-radius: 0.25rem;
       font-size: 0.75rem;
       font-weight: 500;
       margin-right: 0.25rem;
       margin-bottom: 0.25rem;
+      border: 1px solid transparent; /* Ensure border consistency if overridden by themes */
     }
 
     .links a {
@@ -121,6 +121,16 @@ export class ProjectCard extends LitElement {
       opacity: 0.8;
     }
   `;
+
+  static techColorPalette = [
+    { bg: '#4338CA', text: '#FFFFFF' }, // Indigo-700
+    { bg: '#047857', text: '#FFFFFF' }, // Emerald-700
+    { bg: '#0369A1', text: '#FFFFFF' }, // Cyan-700
+    { bg: '#B45309', text: '#FFFFFF' }, // Amber-700
+    { bg: '#BE185D', text: '#FFFFFF' }, // Pink-700
+    { bg: '#5B21B6', text: '#FFFFFF' }, // Violet-700
+    { bg: '#1E40AF', text: '#FFFFFF' }, // Blue-700
+  ];
 
   @property({ type: String })
   title = 'Project Title';
@@ -140,6 +150,23 @@ export class ProjectCard extends LitElement {
   @property({ type: String })
   githubRepoLink = '';
 
+  private _hashCode(str: string): number {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const character = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + character;
+      hash |= 0; // Convert to 32bit integer
+    }
+    return Math.abs(hash); // Ensure positive for modulo
+  }
+
+  private _getTechColorStyle(tech: string): string {
+    const palette = (this.constructor as typeof ProjectCard).techColorPalette;
+    const hash = this._hashCode(tech);
+    const colorPair = palette[hash % palette.length];
+    return `background-color: ${colorPair.bg}; color: ${colorPair.text}; border-color: ${colorPair.bg};`;
+  }
+
   render() {
     return html`
       <div class="card-image-container">
@@ -153,7 +180,7 @@ export class ProjectCard extends LitElement {
         ${this.techStack.length > 0
           ? html`
               <div class="tech-stack">
-                ${this.techStack.map((tech) => html`<span class="tech-tag">${tech}</span>`)}
+                ${this.techStack.map((tech) => html`<span class="tech-tag" style="${this._getTechColorStyle(tech)}">${tech}</span>`)}
               </div>
             `
           : ''}
