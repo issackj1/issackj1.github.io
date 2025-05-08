@@ -20,16 +20,13 @@ export class AboutMe extends LitElement {
       margin-bottom: 1.5rem; /* Increased margin after title */
       color: var(--text-color);
     }
-    p.bio-part1, p.bio-part2 {
+    p.bio-part1 {
       font-size: 1.05rem; 
       line-height: 1.7; 
       max-width: 600px;
-      margin: 0 auto 1rem auto; /* Margin between bio parts & before links */
+      margin: 0 auto 2rem auto; /* Adjusted bottom margin to 2rem */
       color: var(--text-color);
       opacity: 0.85;
-    }
-    p.bio-part2 {
-        margin-bottom: 2rem; /* More margin after second part of bio */
     }
     .contact-links .accent-button {
       display: inline-block;
