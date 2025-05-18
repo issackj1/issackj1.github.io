@@ -1,5 +1,14 @@
 [
   {
+    "title": "PromptCost Proxy Worker",
+    "role": "Design & Full-stack Dev",
+    "techStack": ["Cloudflare Workers", "TypeScript", "OpenAI API", "Cloudflare KV"],
+    "imageUrl": "/assets/promptcost-proxy-worker-thumb.webp",
+    "description": "A robust, serverless Cloudflare Worker designed to act as an intelligent and secure gateway for applications interacting with the OpenAI API. It provides comprehensive logging, cost tracking, and centralized authentication for all LLM requests.",
+    "liveDemoLink": "https://promptcost-proxy.johnissack997.workers.dev/",
+    "githubRepoLink": ""
+  },
+  {
     "title": "Personal Portfolio",
     "role": "Design & Full-stack Dev",
     "techStack": ["Lit", "TypeScript", "GitHub Pages", "ESBuild", "GitHub Actions", "CSS"],
