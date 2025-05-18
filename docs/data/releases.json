@@ -1,5 +1,13 @@
 [
   {
+    "id": "promptcost-proxy-worker-launch",
+    "date": "2025-05-17",
+    "title": "PromptCost Proxy Worker Launched",
+    "description": "Launched the PromptCost Proxy Worker, a serverless Cloudflare Worker for OpenAI API logging, cost tracking, and authentication.",
+    "link": "https://promptcost-proxy.johnissack997.workers.dev/",
+    "type": "release"
+  },
+  {
     "id": "portfolio-v1-release",
     "date": "2025-05-07",
     "title": "Portfolio v1 Launch",
