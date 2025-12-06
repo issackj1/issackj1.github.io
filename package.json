@@ -23,7 +23,7 @@
     "@web/dev-server": "^0.4.6",
     "@web/dev-server-esbuild": "^1.0.4",
     "copyfiles": "^2.4.1",
-    "esbuild": "^0.19.0",
+    "esbuild": "^0.25.0",
     "gh-pages": "^6.3.0",
     "replace-in-file": "^8.3.0",
     "rimraf": "^5.0.0",
