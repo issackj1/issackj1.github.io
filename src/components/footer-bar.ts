@@ -1,46 +1,60 @@
 import { LitElement, html, css } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 @customElement('footer-bar')
 export class FooterBar extends LitElement {
   static styles = css`
     :host {
       display: block;
-      padding: 1.5rem 1rem; /* Increased padding slightly */
-      background-color: var(--footer-bg-color, #0E1014);
-      color: var(--footer-text-color, #9CA3AF);
-      font-size: 0.875rem;
-      border-top: 1px solid rgba(var(--text-color-rgb, 232, 234, 237), 0.1); 
     }
-    .footer-content {
-      max-width: var(--max-width, 72rem);
+
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      max-width: var(--max-width);
       margin: 0 auto;
+    }
+
+    .footer-content {
       display: flex;
-      justify-content: center; /* Center legal text now */
+      justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       gap: 1rem;
     }
-    .legal-text {
-      opacity: 0.8;
-      text-align: center;
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
     }
-    .legal-text a {
-      color: var(--footer-text-color, #9CA3AF);
-      text-decoration: none;
+
+    .footer-links a {
+      font-size: var(--type-small);
+      color: var(--gray);
     }
-    .legal-text a:hover {
-      text-decoration: underline;
-      opacity: 1;
+
+    p {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
     }
   `;
 
+  @property({ type: String }) copyrightYear = new Date().getFullYear().toString();
+
   render() {
     return html`
-      <div class="footer-content">
-        <div class="legal-text">
-          &copy; ${new Date().getFullYear()} Issack John. All rights reserved. 
+      <footer>
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="#projects">Work</a>
+            <a href="#timeline">Timeline</a>
+            <a href="#about">Contact</a>
+          </div>
+          <p>© ${this.copyrightYear}</p>
         </div>
-      </div>
+      </footer>
     `;
   }
-} 
+}

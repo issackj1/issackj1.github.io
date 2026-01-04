@@ -5,84 +5,61 @@ import { customElement, state } from 'lit/decorators.js';
 export class ThemeToggle extends LitElement {
   static styles = css`
     :host {
-      display: block;
       position: fixed;
-      top: 3rem; /* 48px from edge */
-      right: 3rem; /* 48px from edge */
-      z-index: 1000; /* Ensure it's on top */
+      top: 1.5rem;
+      right: 2rem;
+      z-index: 1000;
     }
-    .toggle-button {
-      background: none;
-      border: 1px solid transparent;
-      color: var(--text-color);
-      padding: 0.5rem;
-      border-radius: 50%;
+
+    button {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      padding: 0.5rem 0.75rem;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      color: var(--ink);
       cursor: pointer;
-      font-size: 1.5rem; /* Icon size */
-      line-height: 1;
-      width: 48px; /* Button size */
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease-in-out, color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      transition: opacity var(--transition);
     }
-    .toggle-button:hover {
-      background-color: rgba(var(--accent-color-rgb), 0.1);
-      border-color: transparent;
-    }
-    .icon {
-      display: inline-block;
-      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy rotation */
+
+    button:hover {
+      opacity: 0.6;
     }
   `;
 
-  @state() private _isDarkMode = false;
-  @state() private _iconRotation = 0;
+  @state() private _isDark = false;
 
   connectedCallback() {
     super.connectedCallback();
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark') {
-      this._isDarkMode = true;
-    } else if (storedTheme === 'light') {
-      this._isDarkMode = false;
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      this._isDark = savedTheme === 'dark';
     } else {
-      this._isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this._isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
     this._applyTheme();
-    this._iconRotation = this._isDarkMode ? 0 : 180;
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (!localStorage.getItem('theme')) {
-        this._isDarkMode = e.matches;
-        this._applyTheme();
-        this._iconRotation = this._isDarkMode ? this._iconRotation - 180 : this._iconRotation + 180;
-      }
-    });
-  }
-
-  private _toggleTheme() {
-    this._isDarkMode = !this._isDarkMode;
-    localStorage.setItem('theme', this._isDarkMode ? 'dark' : 'light');
-    this._applyTheme();
-    this._iconRotation += 180;
   }
 
   private _applyTheme() {
-    document.documentElement.setAttribute('data-theme', this._isDarkMode ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', this._isDark ? 'dark' : 'light');
+    this.setAttribute('data-theme', this._isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', this._isDark ? 'dark' : 'light');
+  }
+
+  private _toggleTheme() {
+    this._isDark = !this._isDark;
+    this._applyTheme();
   }
 
   render() {
-    const themeIcon = this._isDarkMode ? '☀️' : '🌙';
     return html`
       <button 
-        class="toggle-button"
-        @click="${this._toggleTheme}" 
-        title="Toggle theme"
-        aria-label="Toggle theme">
-        <span class="icon" style="transform: rotate(${this._iconRotation}deg);">${themeIcon}</span>
+        @click=${this._toggleTheme} 
+        aria-label="Toggle theme"
+        title="${this._isDark ? 'Switch to light mode' : 'Switch to dark mode'}"
+      >
+        ${this._isDark ? 'Light' : 'Dark'}
       </button>
     `;
   }
-} 
+}
