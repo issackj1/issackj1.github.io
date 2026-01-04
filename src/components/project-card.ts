@@ -92,10 +92,13 @@ export class ProjectCard extends LitElement {
       max-width: 100%;
       margin-top: 1rem;
       border: 1px solid var(--border);
+      opacity: 1;
+      transition: opacity 0.2s ease;
     }
 
-    .hidden {
-      display: none;
+    .card-image.loading {
+      opacity: 0;
+      height: 200px; /* Reserve space while loading */
     }
   `;
 
@@ -145,7 +148,7 @@ export class ProjectCard extends LitElement {
           <img 
             src="${this.imageUrl}" 
             alt="${this.title}" 
-            class="card-image ${this._imageLoaded ? '' : 'hidden'}"
+            class="card-image ${this._imageLoaded ? '' : 'loading'}"
             @load=${this._handleImageLoad}
             @error=${this._handleImageError}
             loading="lazy"
