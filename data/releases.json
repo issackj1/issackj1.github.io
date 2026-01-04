@@ -1,5 +1,13 @@
 [
   {
+    "id": "portfolio-redesign-the-proof",
+    "date": "2026-01-03",
+    "title": "Portfolio Redesign: \"The Proof\"",
+    "description": "Launched a comprehensive redesign based on evidence and typography. No decoration, just the work.",
+    "link": "https://issackj1.github.io",
+    "type": "release"
+  },
+  {
     "id": "ufc-calendar-landing-page-redesign",
     "date": "2025-12-17",
     "title": "UFC Calendar Landing Page Redesign Shipped",
