@@ -1,594 +1,534 @@
-var St=Object.defineProperty;var Ct=Object.getOwnPropertyDescriptor;var a=(s,t,e,r)=>{for(var i=r>1?void 0:r?Ct(t,e):t,o=s.length-1,n;o>=0;o--)(n=s[o])&&(i=(r?n(t,e,i):n(i))||i);return r&&i&&St(t,e,i),i};var W=globalThis,J=W.ShadowRoot&&(W.ShadyCSS===void 0||W.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,G=Symbol(),dt=new WeakMap,j=class{constructor(t,e,r){if(this._$cssResult$=!0,r!==G)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e}get styleSheet(){let t=this.o,e=this.t;if(J&&t===void 0){let r=e!==void 0&&e.length===1;r&&(t=dt.get(e)),t===void 0&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),r&&dt.set(e,t))}return t}toString(){return this.cssText}},pt=s=>new j(typeof s=="string"?s:s+"",void 0,G),b=(s,...t)=>{let e=s.length===1?s[0]:t.reduce((r,i,o)=>r+(n=>{if(n._$cssResult$===!0)return n.cssText;if(typeof n=="number")return n;throw Error("Value passed to 'css' function must be a 'css' function result: "+n+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(i)+s[o+1],s[0]);return new j(e,s,G)},mt=(s,t)=>{if(J)s.adoptedStyleSheets=t.map(e=>e instanceof CSSStyleSheet?e:e.styleSheet);else for(let e of t){let r=document.createElement("style"),i=W.litNonce;i!==void 0&&r.setAttribute("nonce",i),r.textContent=e.cssText,s.appendChild(r)}},tt=J?s=>s:s=>s instanceof CSSStyleSheet?(t=>{let e="";for(let r of t.cssRules)e+=r.cssText;return pt(e)})(s):s;var{is:Ft,defineProperty:Pt,getOwnPropertyDescriptor:Rt,getOwnPropertyNames:Ut,getOwnPropertySymbols:Tt,getPrototypeOf:Dt}=Object,K=globalThis,ut=K.trustedTypes,Ot=ut?ut.emptyScript:"",Lt=K.reactiveElementPolyfillSupport,M=(s,t)=>s,I={toAttribute(s,t){switch(t){case Boolean:s=s?Ot:null;break;case Object:case Array:s=s==null?s:JSON.stringify(s)}return s},fromAttribute(s,t){let e=s;switch(t){case Boolean:e=s!==null;break;case Number:e=s===null?null:Number(s);break;case Object:case Array:try{e=JSON.parse(s)}catch{e=null}}return e}},Z=(s,t)=>!Ft(s,t),gt={attribute:!0,type:String,converter:I,reflect:!1,useDefault:!1,hasChanged:Z};Symbol.metadata??=Symbol("metadata"),K.litPropertyMetadata??=new WeakMap;var A=class extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=gt){if(e.state&&(e.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(t)&&((e=Object.create(e)).wrapped=!0),this.elementProperties.set(t,e),!e.noAccessor){let r=Symbol(),i=this.getPropertyDescriptor(t,r,e);i!==void 0&&Pt(this.prototype,t,i)}}static getPropertyDescriptor(t,e,r){let{get:i,set:o}=Rt(this.prototype,t)??{get(){return this[e]},set(n){this[e]=n}};return{get:i,set(n){let d=i?.call(this);o?.call(this,n),this.requestUpdate(t,d,r)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??gt}static _$Ei(){if(this.hasOwnProperty(M("elementProperties")))return;let t=Dt(this);t.finalize(),t.l!==void 0&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(M("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(M("properties"))){let e=this.properties,r=[...Ut(e),...Tt(e)];for(let i of r)this.createProperty(i,e[i])}let t=this[Symbol.metadata];if(t!==null){let e=litPropertyMetadata.get(t);if(e!==void 0)for(let[r,i]of e)this.elementProperties.set(r,i)}this._$Eh=new Map;for(let[e,r]of this.elementProperties){let i=this._$Eu(e,r);i!==void 0&&this._$Eh.set(i,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){let e=[];if(Array.isArray(t)){let r=new Set(t.flat(1/0).reverse());for(let i of r)e.unshift(tt(i))}else t!==void 0&&e.push(tt(t));return e}static _$Eu(t,e){let r=e.attribute;return r===!1?void 0:typeof r=="string"?r:typeof t=="string"?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise(t=>this.enableUpdating=t),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(t=>t(this))}addController(t){(this._$EO??=new Set).add(t),this.renderRoot!==void 0&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){let t=new Map,e=this.constructor.elementProperties;for(let r of e.keys())this.hasOwnProperty(r)&&(t.set(r,this[r]),delete this[r]);t.size>0&&(this._$Ep=t)}createRenderRoot(){let t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return mt(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach(t=>t.hostConnected?.())}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach(t=>t.hostDisconnected?.())}attributeChangedCallback(t,e,r){this._$AK(t,r)}_$ET(t,e){let r=this.constructor.elementProperties.get(t),i=this.constructor._$Eu(t,r);if(i!==void 0&&r.reflect===!0){let o=(r.converter?.toAttribute!==void 0?r.converter:I).toAttribute(e,r.type);this._$Em=t,o==null?this.removeAttribute(i):this.setAttribute(i,o),this._$Em=null}}_$AK(t,e){let r=this.constructor,i=r._$Eh.get(t);if(i!==void 0&&this._$Em!==i){let o=r.getPropertyOptions(i),n=typeof o.converter=="function"?{fromAttribute:o.converter}:o.converter?.fromAttribute!==void 0?o.converter:I;this._$Em=i,this[i]=n.fromAttribute(e,o.type)??this._$Ej?.get(i)??null,this._$Em=null}}requestUpdate(t,e,r){if(t!==void 0){let i=this.constructor,o=this[t];if(r??=i.getPropertyOptions(t),!((r.hasChanged??Z)(o,e)||r.useDefault&&r.reflect&&o===this._$Ej?.get(t)&&!this.hasAttribute(i._$Eu(t,r))))return;this.C(t,e,r)}this.isUpdatePending===!1&&(this._$ES=this._$EP())}C(t,e,{useDefault:r,reflect:i,wrapped:o},n){r&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,n??e??this[t]),o!==!0||n!==void 0)||(this._$AL.has(t)||(this.hasUpdated||r||(e=void 0),this._$AL.set(t,e)),i===!0&&this._$Em!==t&&(this._$Eq??=new Set).add(t))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}let t=this.scheduleUpdate();return t!=null&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(let[i,o]of this._$Ep)this[i]=o;this._$Ep=void 0}let r=this.constructor.elementProperties;if(r.size>0)for(let[i,o]of r){let{wrapped:n}=o,d=this[i];n!==!0||this._$AL.has(i)||d===void 0||this.C(i,void 0,o,d)}}let t=!1,e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach(r=>r.hostUpdate?.()),this.update(e)):this._$EM()}catch(r){throw t=!1,this._$EM(),r}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach(e=>e.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Eq&&=this._$Eq.forEach(e=>this._$ET(e,this[e])),this._$EM()}updated(t){}firstUpdated(t){}};A.elementStyles=[],A.shadowRootOptions={mode:"open"},A[M("elementProperties")]=new Map,A[M("finalized")]=new Map,Lt?.({ReactiveElement:A}),(K.reactiveElementVersions??=[]).push("2.1.0");var at=globalThis,X=at.trustedTypes,ft=X?X.createPolicy("lit-html",{createHTML:s=>s}):void 0,xt="$lit$",C=`lit$${Math.random().toFixed(9).slice(2)}$`,kt="?"+C,jt=`<${kt}>`,U=document,N=()=>U.createComment(""),q=s=>s===null||typeof s!="object"&&typeof s!="function",lt=Array.isArray,Mt=s=>lt(s)||typeof s?.[Symbol.iterator]=="function",et=`[ 	
-\f\r]`,z=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,bt=/-->/g,vt=/>/g,P=RegExp(`>|${et}(?:([^\\s"'>=/]+)(${et}*=${et}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`,"g"),_t=/'/g,yt=/"/g,wt=/^(?:script|style|textarea|title)$/i,ct=s=>(t,...e)=>({_$litType$:s,strings:t,values:e}),c=ct(1),Kt=ct(2),Zt=ct(3),T=Symbol.for("lit-noChange"),f=Symbol.for("lit-nothing"),$t=new WeakMap,R=U.createTreeWalker(U,129);function At(s,t){if(!lt(s)||!s.hasOwnProperty("raw"))throw Error("invalid template strings array");return ft!==void 0?ft.createHTML(t):t}var It=(s,t)=>{let e=s.length-1,r=[],i,o=t===2?"<svg>":t===3?"<math>":"",n=z;for(let d=0;d<e;d++){let l=s[d],g,v,p=-1,w=0;for(;w<l.length&&(n.lastIndex=w,v=n.exec(l),v!==null);)w=n.lastIndex,n===z?v[1]==="!--"?n=bt:v[1]!==void 0?n=vt:v[2]!==void 0?(wt.test(v[2])&&(i=RegExp("</"+v[2],"g")),n=P):v[3]!==void 0&&(n=P):n===P?v[0]===">"?(n=i??z,p=-1):v[1]===void 0?p=-2:(p=n.lastIndex-v[2].length,g=v[1],n=v[3]===void 0?P:v[3]==='"'?yt:_t):n===yt||n===_t?n=P:n===bt||n===vt?n=z:(n=P,i=void 0);let S=n===P&&s[d+1].startsWith("/>")?" ":"";o+=n===z?l+jt:p>=0?(r.push(g),l.slice(0,p)+xt+l.slice(p)+C+S):l+C+(p===-2?d:S)}return[At(s,o+(s[e]||"<?>")+(t===2?"</svg>":t===3?"</math>":"")),r]},H=class s{constructor({strings:t,_$litType$:e},r){let i;this.parts=[];let o=0,n=0,d=t.length-1,l=this.parts,[g,v]=It(t,e);if(this.el=s.createElement(g,r),R.currentNode=this.el.content,e===2||e===3){let p=this.el.content.firstChild;p.replaceWith(...p.childNodes)}for(;(i=R.nextNode())!==null&&l.length<d;){if(i.nodeType===1){if(i.hasAttributes())for(let p of i.getAttributeNames())if(p.endsWith(xt)){let w=v[n++],S=i.getAttribute(p).split(C),Y=/([.?@])?(.*)/.exec(w);l.push({type:1,index:o,name:Y[2],strings:S,ctor:Y[1]==="."?it:Y[1]==="?"?st:Y[1]==="@"?ot:L}),i.removeAttribute(p)}else p.startsWith(C)&&(l.push({type:6,index:o}),i.removeAttribute(p));if(wt.test(i.tagName)){let p=i.textContent.split(C),w=p.length-1;if(w>0){i.textContent=X?X.emptyScript:"";for(let S=0;S<w;S++)i.append(p[S],N()),R.nextNode(),l.push({type:2,index:++o});i.append(p[w],N())}}}else if(i.nodeType===8)if(i.data===kt)l.push({type:2,index:o});else{let p=-1;for(;(p=i.data.indexOf(C,p+1))!==-1;)l.push({type:7,index:o}),p+=C.length-1}o++}}static createElement(t,e){let r=U.createElement("template");return r.innerHTML=t,r}};function O(s,t,e=s,r){if(t===T)return t;let i=r!==void 0?e._$Co?.[r]:e._$Cl,o=q(t)?void 0:t._$litDirective$;return i?.constructor!==o&&(i?._$AO?.(!1),o===void 0?i=void 0:(i=new o(s),i._$AT(s,e,r)),r!==void 0?(e._$Co??=[])[r]=i:e._$Cl=i),i!==void 0&&(t=O(s,i._$AS(s,t.values),i,r)),t}var rt=class{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){let{el:{content:e},parts:r}=this._$AD,i=(t?.creationScope??U).importNode(e,!0);R.currentNode=i;let o=R.nextNode(),n=0,d=0,l=r[0];for(;l!==void 0;){if(n===l.index){let g;l.type===2?g=new B(o,o.nextSibling,this,t):l.type===1?g=new l.ctor(o,l.name,l.strings,this,t):l.type===6&&(g=new nt(o,this,t)),this._$AV.push(g),l=r[++d]}n!==l?.index&&(o=R.nextNode(),n++)}return R.currentNode=U,i}p(t){let e=0;for(let r of this._$AV)r!==void 0&&(r.strings!==void 0?(r._$AI(t,r,e),e+=r.strings.length-2):r._$AI(t[e])),e++}},B=class s{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,e,r,i){this.type=2,this._$AH=f,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=r,this.options=i,this._$Cv=i?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode,e=this._$AM;return e!==void 0&&t?.nodeType===11&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=O(this,t,e),q(t)?t===f||t==null||t===""?(this._$AH!==f&&this._$AR(),this._$AH=f):t!==this._$AH&&t!==T&&this._(t):t._$litType$!==void 0?this.$(t):t.nodeType!==void 0?this.T(t):Mt(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==f&&q(this._$AH)?this._$AA.nextSibling.data=t:this.T(U.createTextNode(t)),this._$AH=t}$(t){let{values:e,_$litType$:r}=t,i=typeof r=="number"?this._$AC(t):(r.el===void 0&&(r.el=H.createElement(At(r.h,r.h[0]),this.options)),r);if(this._$AH?._$AD===i)this._$AH.p(e);else{let o=new rt(i,this),n=o.u(this.options);o.p(e),this.T(n),this._$AH=o}}_$AC(t){let e=$t.get(t.strings);return e===void 0&&$t.set(t.strings,e=new H(t)),e}k(t){lt(this._$AH)||(this._$AH=[],this._$AR());let e=this._$AH,r,i=0;for(let o of t)i===e.length?e.push(r=new s(this.O(N()),this.O(N()),this,this.options)):r=e[i],r._$AI(o),i++;i<e.length&&(this._$AR(r&&r._$AB.nextSibling,i),e.length=i)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t&&t!==this._$AB;){let r=t.nextSibling;t.remove(),t=r}}setConnected(t){this._$AM===void 0&&(this._$Cv=t,this._$AP?.(t))}},L=class{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,r,i,o){this.type=1,this._$AH=f,this._$AN=void 0,this.element=t,this.name=e,this._$AM=i,this.options=o,r.length>2||r[0]!==""||r[1]!==""?(this._$AH=Array(r.length-1).fill(new String),this.strings=r):this._$AH=f}_$AI(t,e=this,r,i){let o=this.strings,n=!1;if(o===void 0)t=O(this,t,e,0),n=!q(t)||t!==this._$AH&&t!==T,n&&(this._$AH=t);else{let d=t,l,g;for(t=o[0],l=0;l<o.length-1;l++)g=O(this,d[r+l],e,l),g===T&&(g=this._$AH[l]),n||=!q(g)||g!==this._$AH[l],g===f?t=f:t!==f&&(t+=(g??"")+o[l+1]),this._$AH[l]=g}n&&!i&&this.j(t)}j(t){t===f?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??"")}},it=class extends L{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===f?void 0:t}},st=class extends L{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==f)}},ot=class extends L{constructor(t,e,r,i,o){super(t,e,r,i,o),this.type=5}_$AI(t,e=this){if((t=O(this,t,e,0)??f)===T)return;let r=this._$AH,i=t===f&&r!==f||t.capture!==r.capture||t.once!==r.once||t.passive!==r.passive,o=t!==f&&(r===f||i);i&&this.element.removeEventListener(this.name,this,r),o&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){typeof this._$AH=="function"?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}},nt=class{constructor(t,e,r){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=r}get _$AU(){return this._$AM._$AU}_$AI(t){O(this,t)}};var zt=at.litHtmlPolyfillSupport;zt?.(H,B),(at.litHtmlVersions??=[]).push("3.3.0");var Et=(s,t,e)=>{let r=e?.renderBefore??t,i=r._$litPart$;if(i===void 0){let o=e?.renderBefore??null;r._$litPart$=i=new B(t.insertBefore(N(),o),o,void 0,e??{})}return i._$AI(s),i};var ht=globalThis,m=class extends A{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){let t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){let e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=Et(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return T}};m._$litElement$=!0,m.finalized=!0,ht.litElementHydrateSupport?.({LitElement:m});var Nt=ht.litElementPolyfillSupport;Nt?.({LitElement:m});(ht.litElementVersions??=[]).push("4.2.0");var _=s=>(t,e)=>{e!==void 0?e.addInitializer(()=>{customElements.define(s,t)}):customElements.define(s,t)};var qt={attribute:!0,type:String,converter:I,reflect:!1,hasChanged:Z},Ht=(s=qt,t,e)=>{let{kind:r,metadata:i}=e,o=globalThis.litPropertyMetadata.get(i);if(o===void 0&&globalThis.litPropertyMetadata.set(i,o=new Map),r==="setter"&&((s=Object.create(s)).wrapped=!0),o.set(e.name,s),r==="accessor"){let{name:n}=e;return{set(d){let l=t.get.call(this);t.set.call(this,d),this.requestUpdate(n,l,s)},init(d){return d!==void 0&&this.C(n,void 0,s,d),d}}}if(r==="setter"){let{name:n}=e;return function(d){let l=this[n];t.call(this,d),this.requestUpdate(n,l,s)}}throw Error("Unsupported decorator location: "+r)};function h(s){return(t,e)=>typeof e=="object"?Ht(s,t,e):((r,i,o)=>{let n=i.hasOwnProperty(o);return i.constructor.createProperty(o,r),n?Object.getOwnPropertyDescriptor(i,o):void 0})(s,t,e)}function u(s){return h({...s,state:!0,attribute:!1})}var F=class extends m{constructor(){super(...arguments);this.endValue=0;this.duration=2e3;this._currentValue=0;this._observer=null;this._animationFrameId=null}connectedCallback(){super.connectedCallback(),this._observer=new IntersectionObserver(this._handleIntersection.bind(this),{threshold:.5}),this._observer.observe(this)}disconnectedCallback(){super.disconnectedCallback(),this._observer&&(this._observer.disconnect(),this._observer=null),this._animationFrameId&&cancelAnimationFrame(this._animationFrameId)}_handleIntersection(e){e.forEach(r=>{r.isIntersecting&&(this._startAnimation(),this._observer&&this._observer.unobserve(this))})}_startAnimation(){let e=null,r=i=>{e||(e=i);let o=i-e,n=Math.min(o/this.duration,1);this._currentValue=Math.floor(n*this.endValue),n<1?this._animationFrameId=requestAnimationFrame(r):this._currentValue=this.endValue};this._animationFrameId=requestAnimationFrame(r)}render(){return c`${this._currentValue}`}};F.styles=b`
+var wt=Object.defineProperty;var Ct=Object.getOwnPropertyDescriptor;var a=(r,t,e,i)=>{for(var s=i>1?void 0:i?Ct(t,e):t,o=r.length-1,n;o>=0;o--)(n=r[o])&&(s=(i?n(t,e,s):n(s))||s);return i&&s&&wt(t,e,s),s};var Y=globalThis,K=Y.ShadowRoot&&(Y.ShadyCSS===void 0||Y.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,G=Symbol(),pt=new WeakMap,j=class{constructor(t,e,i){if(this._$cssResult$=!0,i!==G)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e}get styleSheet(){let t=this.o,e=this.t;if(K&&t===void 0){let i=e!==void 0&&e.length===1;i&&(t=pt.get(e)),t===void 0&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),i&&pt.set(e,t))}return t}toString(){return this.cssText}},dt=r=>new j(typeof r=="string"?r:r+"",void 0,G),v=(r,...t)=>{let e=r.length===1?r[0]:t.reduce((i,s,o)=>i+(n=>{if(n._$cssResult$===!0)return n.cssText;if(typeof n=="number")return n;throw Error("Value passed to 'css' function must be a 'css' function result: "+n+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(s)+r[o+1],r[0]);return new j(e,r,G)},mt=(r,t)=>{if(K)r.adoptedStyleSheets=t.map(e=>e instanceof CSSStyleSheet?e:e.styleSheet);else for(let e of t){let i=document.createElement("style"),s=Y.litNonce;s!==void 0&&i.setAttribute("nonce",s),i.textContent=e.cssText,r.appendChild(i)}},tt=K?r=>r:r=>r instanceof CSSStyleSheet?(t=>{let e="";for(let i of t.cssRules)e+=i.cssText;return dt(e)})(r):r;var{is:Ut,defineProperty:Dt,getOwnPropertyDescriptor:Lt,getOwnPropertyNames:Pt,getOwnPropertySymbols:Rt,getPrototypeOf:Ot}=Object,Z=globalThis,ut=Z.trustedTypes,Tt=ut?ut.emptyScript:"",Nt=Z.reactiveElementPolyfillSupport,I=(r,t)=>r,M={toAttribute(r,t){switch(t){case Boolean:r=r?Tt:null;break;case Object:case Array:r=r==null?r:JSON.stringify(r)}return r},fromAttribute(r,t){let e=r;switch(t){case Boolean:e=r!==null;break;case Number:e=r===null?null:Number(r);break;case Object:case Array:try{e=JSON.parse(r)}catch{e=null}}return e}},J=(r,t)=>!Ut(r,t),ft={attribute:!0,type:String,converter:M,reflect:!1,useDefault:!1,hasChanged:J};Symbol.metadata??=Symbol("metadata"),Z.litPropertyMetadata??=new WeakMap;var E=class extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=ft){if(e.state&&(e.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(t)&&((e=Object.create(e)).wrapped=!0),this.elementProperties.set(t,e),!e.noAccessor){let i=Symbol(),s=this.getPropertyDescriptor(t,i,e);s!==void 0&&Dt(this.prototype,t,s)}}static getPropertyDescriptor(t,e,i){let{get:s,set:o}=Lt(this.prototype,t)??{get(){return this[e]},set(n){this[e]=n}};return{get:s,set(n){let p=s?.call(this);o?.call(this,n),this.requestUpdate(t,p,i)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??ft}static _$Ei(){if(this.hasOwnProperty(I("elementProperties")))return;let t=Ot(this);t.finalize(),t.l!==void 0&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(I("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(I("properties"))){let e=this.properties,i=[...Pt(e),...Rt(e)];for(let s of i)this.createProperty(s,e[s])}let t=this[Symbol.metadata];if(t!==null){let e=litPropertyMetadata.get(t);if(e!==void 0)for(let[i,s]of e)this.elementProperties.set(i,s)}this._$Eh=new Map;for(let[e,i]of this.elementProperties){let s=this._$Eu(e,i);s!==void 0&&this._$Eh.set(s,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){let e=[];if(Array.isArray(t)){let i=new Set(t.flat(1/0).reverse());for(let s of i)e.unshift(tt(s))}else t!==void 0&&e.push(tt(t));return e}static _$Eu(t,e){let i=e.attribute;return i===!1?void 0:typeof i=="string"?i:typeof t=="string"?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise(t=>this.enableUpdating=t),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(t=>t(this))}addController(t){(this._$EO??=new Set).add(t),this.renderRoot!==void 0&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){let t=new Map,e=this.constructor.elementProperties;for(let i of e.keys())this.hasOwnProperty(i)&&(t.set(i,this[i]),delete this[i]);t.size>0&&(this._$Ep=t)}createRenderRoot(){let t=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return mt(t,this.constructor.elementStyles),t}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach(t=>t.hostConnected?.())}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach(t=>t.hostDisconnected?.())}attributeChangedCallback(t,e,i){this._$AK(t,i)}_$ET(t,e){let i=this.constructor.elementProperties.get(t),s=this.constructor._$Eu(t,i);if(s!==void 0&&i.reflect===!0){let o=(i.converter?.toAttribute!==void 0?i.converter:M).toAttribute(e,i.type);this._$Em=t,o==null?this.removeAttribute(s):this.setAttribute(s,o),this._$Em=null}}_$AK(t,e){let i=this.constructor,s=i._$Eh.get(t);if(s!==void 0&&this._$Em!==s){let o=i.getPropertyOptions(s),n=typeof o.converter=="function"?{fromAttribute:o.converter}:o.converter?.fromAttribute!==void 0?o.converter:M;this._$Em=s,this[s]=n.fromAttribute(e,o.type)??this._$Ej?.get(s)??null,this._$Em=null}}requestUpdate(t,e,i){if(t!==void 0){let s=this.constructor,o=this[t];if(i??=s.getPropertyOptions(t),!((i.hasChanged??J)(o,e)||i.useDefault&&i.reflect&&o===this._$Ej?.get(t)&&!this.hasAttribute(s._$Eu(t,i))))return;this.C(t,e,i)}this.isUpdatePending===!1&&(this._$ES=this._$EP())}C(t,e,{useDefault:i,reflect:s,wrapped:o},n){i&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,n??e??this[t]),o!==!0||n!==void 0)||(this._$AL.has(t)||(this.hasUpdated||i||(e=void 0),this._$AL.set(t,e)),s===!0&&this._$Em!==t&&(this._$Eq??=new Set).add(t))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(e){Promise.reject(e)}let t=this.scheduleUpdate();return t!=null&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(let[s,o]of this._$Ep)this[s]=o;this._$Ep=void 0}let i=this.constructor.elementProperties;if(i.size>0)for(let[s,o]of i){let{wrapped:n}=o,p=this[s];n!==!0||this._$AL.has(s)||p===void 0||this.C(s,void 0,o,p)}}let t=!1,e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach(i=>i.hostUpdate?.()),this.update(e)):this._$EM()}catch(i){throw t=!1,this._$EM(),i}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach(e=>e.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Eq&&=this._$Eq.forEach(e=>this._$ET(e,this[e])),this._$EM()}updated(t){}firstUpdated(t){}};E.elementStyles=[],E.shadowRootOptions={mode:"open"},E[I("elementProperties")]=new Map,E[I("finalized")]=new Map,Nt?.({ReactiveElement:E}),(Z.reactiveElementVersions??=[]).push("2.1.0");var at=globalThis,Q=at.trustedTypes,gt=Q?Q.createPolicy("lit-html",{createHTML:r=>r}):void 0,At="$lit$",C=`lit$${Math.random().toFixed(9).slice(2)}$`,St="?"+C,zt=`<${St}>`,P=document,q=()=>P.createComment(""),V=r=>r===null||typeof r!="object"&&typeof r!="function",lt=Array.isArray,jt=r=>lt(r)||typeof r?.[Symbol.iterator]=="function",et=`[ 	
+\f\r]`,H=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,vt=/-->/g,yt=/>/g,D=RegExp(`>|${et}(?:([^\\s"'>=/]+)(${et}*=${et}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`,"g"),_t=/'/g,$t=/"/g,xt=/^(?:script|style|textarea|title)$/i,ht=r=>(t,...e)=>({_$litType$:r,strings:t,values:e}),h=ht(1),Zt=ht(2),Jt=ht(3),R=Symbol.for("lit-noChange"),g=Symbol.for("lit-nothing"),bt=new WeakMap,L=P.createTreeWalker(P,129);function Et(r,t){if(!lt(r)||!r.hasOwnProperty("raw"))throw Error("invalid template strings array");return gt!==void 0?gt.createHTML(t):t}var It=(r,t)=>{let e=r.length-1,i=[],s,o=t===2?"<svg>":t===3?"<math>":"",n=H;for(let p=0;p<e;p++){let l=r[p],f,y,d=-1,x=0;for(;x<l.length&&(n.lastIndex=x,y=n.exec(l),y!==null);)x=n.lastIndex,n===H?y[1]==="!--"?n=vt:y[1]!==void 0?n=yt:y[2]!==void 0?(xt.test(y[2])&&(s=RegExp("</"+y[2],"g")),n=D):y[3]!==void 0&&(n=D):n===D?y[0]===">"?(n=s??H,d=-1):y[1]===void 0?d=-2:(d=n.lastIndex-y[2].length,f=y[1],n=y[3]===void 0?D:y[3]==='"'?$t:_t):n===$t||n===_t?n=D:n===vt||n===yt?n=H:(n=D,s=void 0);let w=n===D&&r[p+1].startsWith("/>")?" ":"";o+=n===H?l+zt:d>=0?(i.push(f),l.slice(0,d)+At+l.slice(d)+C+w):l+C+(d===-2?p:w)}return[Et(r,o+(r[e]||"<?>")+(t===2?"</svg>":t===3?"</math>":"")),i]},F=class r{constructor({strings:t,_$litType$:e},i){let s;this.parts=[];let o=0,n=0,p=t.length-1,l=this.parts,[f,y]=It(t,e);if(this.el=r.createElement(f,i),L.currentNode=this.el.content,e===2||e===3){let d=this.el.content.firstChild;d.replaceWith(...d.childNodes)}for(;(s=L.nextNode())!==null&&l.length<p;){if(s.nodeType===1){if(s.hasAttributes())for(let d of s.getAttributeNames())if(d.endsWith(At)){let x=y[n++],w=s.getAttribute(d).split(C),W=/([.?@])?(.*)/.exec(x);l.push({type:1,index:o,name:W[2],strings:w,ctor:W[1]==="."?st:W[1]==="?"?rt:W[1]==="@"?ot:T}),s.removeAttribute(d)}else d.startsWith(C)&&(l.push({type:6,index:o}),s.removeAttribute(d));if(xt.test(s.tagName)){let d=s.textContent.split(C),x=d.length-1;if(x>0){s.textContent=Q?Q.emptyScript:"";for(let w=0;w<x;w++)s.append(d[w],q()),L.nextNode(),l.push({type:2,index:++o});s.append(d[x],q())}}}else if(s.nodeType===8)if(s.data===St)l.push({type:2,index:o});else{let d=-1;for(;(d=s.data.indexOf(C,d+1))!==-1;)l.push({type:7,index:o}),d+=C.length-1}o++}}static createElement(t,e){let i=P.createElement("template");return i.innerHTML=t,i}};function O(r,t,e=r,i){if(t===R)return t;let s=i!==void 0?e._$Co?.[i]:e._$Cl,o=V(t)?void 0:t._$litDirective$;return s?.constructor!==o&&(s?._$AO?.(!1),o===void 0?s=void 0:(s=new o(r),s._$AT(r,e,i)),i!==void 0?(e._$Co??=[])[i]=s:e._$Cl=s),s!==void 0&&(t=O(r,s._$AS(r,t.values),s,i)),t}var it=class{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){let{el:{content:e},parts:i}=this._$AD,s=(t?.creationScope??P).importNode(e,!0);L.currentNode=s;let o=L.nextNode(),n=0,p=0,l=i[0];for(;l!==void 0;){if(n===l.index){let f;l.type===2?f=new B(o,o.nextSibling,this,t):l.type===1?f=new l.ctor(o,l.name,l.strings,this,t):l.type===6&&(f=new nt(o,this,t)),this._$AV.push(f),l=i[++p]}n!==l?.index&&(o=L.nextNode(),n++)}return L.currentNode=P,s}p(t){let e=0;for(let i of this._$AV)i!==void 0&&(i.strings!==void 0?(i._$AI(t,i,e),e+=i.strings.length-2):i._$AI(t[e])),e++}},B=class r{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,e,i,s){this.type=2,this._$AH=g,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=i,this.options=s,this._$Cv=s?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode,e=this._$AM;return e!==void 0&&t?.nodeType===11&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=O(this,t,e),V(t)?t===g||t==null||t===""?(this._$AH!==g&&this._$AR(),this._$AH=g):t!==this._$AH&&t!==R&&this._(t):t._$litType$!==void 0?this.$(t):t.nodeType!==void 0?this.T(t):jt(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==g&&V(this._$AH)?this._$AA.nextSibling.data=t:this.T(P.createTextNode(t)),this._$AH=t}$(t){let{values:e,_$litType$:i}=t,s=typeof i=="number"?this._$AC(t):(i.el===void 0&&(i.el=F.createElement(Et(i.h,i.h[0]),this.options)),i);if(this._$AH?._$AD===s)this._$AH.p(e);else{let o=new it(s,this),n=o.u(this.options);o.p(e),this.T(n),this._$AH=o}}_$AC(t){let e=bt.get(t.strings);return e===void 0&&bt.set(t.strings,e=new F(t)),e}k(t){lt(this._$AH)||(this._$AH=[],this._$AR());let e=this._$AH,i,s=0;for(let o of t)s===e.length?e.push(i=new r(this.O(q()),this.O(q()),this,this.options)):i=e[s],i._$AI(o),s++;s<e.length&&(this._$AR(i&&i._$AB.nextSibling,s),e.length=s)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t&&t!==this._$AB;){let i=t.nextSibling;t.remove(),t=i}}setConnected(t){this._$AM===void 0&&(this._$Cv=t,this._$AP?.(t))}},T=class{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,i,s,o){this.type=1,this._$AH=g,this._$AN=void 0,this.element=t,this.name=e,this._$AM=s,this.options=o,i.length>2||i[0]!==""||i[1]!==""?(this._$AH=Array(i.length-1).fill(new String),this.strings=i):this._$AH=g}_$AI(t,e=this,i,s){let o=this.strings,n=!1;if(o===void 0)t=O(this,t,e,0),n=!V(t)||t!==this._$AH&&t!==R,n&&(this._$AH=t);else{let p=t,l,f;for(t=o[0],l=0;l<o.length-1;l++)f=O(this,p[i+l],e,l),f===R&&(f=this._$AH[l]),n||=!V(f)||f!==this._$AH[l],f===g?t=g:t!==g&&(t+=(f??"")+o[l+1]),this._$AH[l]=f}n&&!s&&this.j(t)}j(t){t===g?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??"")}},st=class extends T{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===g?void 0:t}},rt=class extends T{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==g)}},ot=class extends T{constructor(t,e,i,s,o){super(t,e,i,s,o),this.type=5}_$AI(t,e=this){if((t=O(this,t,e,0)??g)===R)return;let i=this._$AH,s=t===g&&i!==g||t.capture!==i.capture||t.once!==i.once||t.passive!==i.passive,o=t!==g&&(i===g||s);s&&this.element.removeEventListener(this.name,this,i),o&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){typeof this._$AH=="function"?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}},nt=class{constructor(t,e,i){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=i}get _$AU(){return this._$AM._$AU}_$AI(t){O(this,t)}};var Mt=at.litHtmlPolyfillSupport;Mt?.(F,B),(at.litHtmlVersions??=[]).push("3.3.0");var kt=(r,t,e)=>{let i=e?.renderBefore??t,s=i._$litPart$;if(s===void 0){let o=e?.renderBefore??null;i._$litPart$=s=new B(t.insertBefore(q(),o),o,void 0,e??{})}return s._$AI(r),s};var ct=globalThis,m=class extends E{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){let t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){let e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=kt(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return R}};m._$litElement$=!0,m.finalized=!0,ct.litElementHydrateSupport?.({LitElement:m});var Ht=ct.litElementPolyfillSupport;Ht?.({LitElement:m});(ct.litElementVersions??=[]).push("4.2.0");var _=r=>(t,e)=>{e!==void 0?e.addInitializer(()=>{customElements.define(r,t)}):customElements.define(r,t)};var qt={attribute:!0,type:String,converter:M,reflect:!1,hasChanged:J},Vt=(r=qt,t,e)=>{let{kind:i,metadata:s}=e,o=globalThis.litPropertyMetadata.get(s);if(o===void 0&&globalThis.litPropertyMetadata.set(s,o=new Map),i==="setter"&&((r=Object.create(r)).wrapped=!0),o.set(e.name,r),i==="accessor"){let{name:n}=e;return{set(p){let l=t.get.call(this);t.set.call(this,p),this.requestUpdate(n,l,r)},init(p){return p!==void 0&&this.C(n,void 0,r,p),p}}}if(i==="setter"){let{name:n}=e;return function(p){let l=this[n];t.call(this,p),this.requestUpdate(n,l,r)}}throw Error("Unsupported decorator location: "+i)};function c(r){return(t,e)=>typeof e=="object"?Vt(r,t,e):((i,s,o)=>{let n=s.hasOwnProperty(o);return s.constructor.createProperty(o,i),n?Object.getOwnPropertyDescriptor(s,o):void 0})(r,t,e)}function u(r){return c({...r,state:!0,attribute:!1})}var U=class extends m{constructor(){super(...arguments);this.endValue=0;this.duration=2e3;this._currentValue=0;this._observer=null;this._animationFrameId=null}connectedCallback(){super.connectedCallback(),this._observer=new IntersectionObserver(this._handleIntersection.bind(this),{threshold:.5}),this._observer.observe(this)}disconnectedCallback(){super.disconnectedCallback(),this._observer&&(this._observer.disconnect(),this._observer=null),this._animationFrameId&&cancelAnimationFrame(this._animationFrameId)}_handleIntersection(e){e.forEach(i=>{i.isIntersecting&&(this._startAnimation(),this._observer&&this._observer.unobserve(this))})}_startAnimation(){let e=null,i=s=>{e||(e=s);let o=s-e,n=Math.min(o/this.duration,1);this._currentValue=Math.floor(n*this.endValue),n<1?this._animationFrameId=requestAnimationFrame(i):this._currentValue=this.endValue};this._animationFrameId=requestAnimationFrame(i)}render(){return h`${this._currentValue}`}};U.styles=v`
     :host {
       display: inline-block; /* Or span if preferred, but inline-block is safer for layout */
       font-weight: bold;
       color: var(--accent-color, #2563EB);
     }
-  `,a([h({type:Number})],F.prototype,"endValue",2),a([h({type:Number})],F.prototype,"duration",2),a([u()],F.prototype,"_currentValue",2),F=a([_("metrics-counter")],F);var y=class extends m{constructor(){super(...arguments);this.headline="Building Products, Faster.";this.subhead="A showcase of meticulously crafted projects and a commitment to rapid, high-quality development.";this.ctaText="Explore Projects";this.ctaLink="#projects";this._totalProductsShipped=null;this._monthsActive=null;this._isLoadingStats=!0;this._statsError=null;this._heroVisible=!1;this._observer=null}connectedCallback(){super.connectedCallback(),this._fetchStats(),this._observer=new IntersectionObserver(([e])=>{this._heroVisible=e.isIntersecting,e.isIntersecting?this.shadowRoot?.querySelectorAll(".metrics-label-part").forEach(r=>{r.style.animationPlayState="running"}):this.shadowRoot?.querySelectorAll(".metrics-label-part").forEach(r=>{r.style.animationName="none"})},{threshold:.4}),this._observer.observe(this)}disconnectedCallback(){super.disconnectedCallback(),this._observer?.disconnect()}_calculateMonthsBetween(e,r){let i=new Date(e),o=new Date(r);if(isNaN(i.getTime())||isNaN(o.getTime()))return console.error("Invalid date format for calculating months:",e,r),0;let n=(o.getFullYear()-i.getFullYear())*12;return n-=i.getMonth(),n+=o.getMonth(),o.getDate()<i.getDate()&&n>0,n<=0?0:n}async _fetchStats(){this._isLoadingStats=!0,this._statsError=null;try{let e=await fetch("/data/stats.json");if(!e.ok)throw new Error(`HTTP error! status: ${e.status}`);let r=await e.json();this._totalProductsShipped=r.totalProductsShipped;let i="2025-05-07";r.firstReleaseDate?this._monthsActive=this._calculateMonthsBetween(r.firstReleaseDate,i):this._monthsActive=0}catch(e){console.error("Error fetching stats data:",e),this._statsError="Could not load stats.",this._totalProductsShipped=0,this._monthsActive=0}finally{this._isLoadingStats=!1}}render(){let e=this._heroVisible?"animation-play-state: running;":"animation-play-state: paused;",r;return this._isLoadingStats?r=c`<p>Loading stats...</p>`:this._statsError?r=c`<p class=\"error-message\">${this._statsError}</p>`:r=c`
-        <p>
-          <span class="metrics-label-part part1" style="${e}">Products shipped: </span>
-          <span class="metrics-label-part part2" style="${e}"><metrics-counter .endValue=${this._totalProductsShipped} .duration=\\${1500}></metrics-counter></span>
-          <span class="metrics-label-part part2" style="${e}"> in ${this._monthsActive} months</span>
-        </p>
-      `,c`
-      <h1>${this.headline}</h1>
-      <p class="subhead">${this.subhead}</p>
-      <a href="${this.ctaLink}" class="cta-button" aria-label="Explore Projects">${this.ctaText}</a>
-      <div class="metrics">
-        ${r}
-      </div>
-    `}};y.styles=b`
-    :host {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 2rem 1rem; /* Added more padding */
-      box-sizing: border-box;
-      background-color: var(--hero-bg-color-wash, rgba(79, 70, 229, 0.1)); /* Full-bleed accent wash */
-      color: var(--text-color); /* Use global text color, will be overridden by dark mode */
-      width: 100vw; /* Ensure full viewport width */
-      position: relative; /* For potential pseudo-elements or absolutely positioned children */
-      left: 50%;
-      transform: translateX(-50%);
-      margin-bottom: 2rem; /* Space before next "card" section */
-    }
-
-    h1 {
-      font-size: clamp(2rem, 6vw, 3rem); /* Adjusted clamp for impact */
-      margin-bottom: 1rem;
-      font-weight: bold;
-      max-width: 30rem; /* Critique: Hero headline max-width */
-      line-height: 1.2;
-      letter-spacing: -0.015em; /* Critique: Hero headline kerning */
-    }
-
-    p.subhead {
-      font-size: clamp(1rem, 4vw, 1.25rem);
-      margin-bottom: 2rem; /* Increased margin */
-      max-width: 40rem; /* Increased max-width for subhead */
-      opacity: 0.85;
-      line-height: 1.6;
-    }
-
-    .cta-button {
-      padding: 0.875rem 1rem; /* Critique: CTA width/padding updated */
-      background-color: var(--accent-color);
-      color: var(--page-bg); /* Text color contrasting with accent */
-      text-decoration: none;
-      border-radius: 0.5rem; /* 8px */
-      font-weight: 500;
-      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      position: relative; /* For ripple */
-      overflow: hidden; /* For ripple */
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-    }
-
-    .cta-button:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--button-shadow-hover, 0 4px 12px rgba(79, 70, 229, 0.3));
-    }
-    
-    .cta-button::after { /* Ripple effect */
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      background-image: radial-gradient(circle, var(--text-color) 10%, transparent 10.01%);
-      background-repeat: no-repeat;
-      background-position: 50%;
-      transform: scale(10, 10);
-      opacity: 0;
-      transition: transform .3s, opacity .5s;
-    }
-
-    .cta-button:active::after {
-      transform: scale(0, 0);
-      opacity: .2;
-      transition: 0s;
-    }
-
-    .metrics {
-      margin-top: 1.5rem; /* Critique: Pull metrics closer to CTA */
-    }
-
-    .metrics p {
-      color: var(--text-color);
-      opacity: 0.7; /* Softer label */
-      font-size: 0.9rem;
-    }
-    
-    .metrics-label-part {
-        display: inline-block;
-        opacity: 0;
-        transform: translateY(4px);
-        animation: slideInUp 0.5s ease forwards;
-    }
-    .metrics-label-part.part1 { animation-delay: 0.2s; }
-    .metrics-label-part.part2 { animation-delay: 0.4s; }
-    .metrics-label-part metrics-counter { animation-delay: 0.3s; } /* Counter is a component */
-
-    @keyframes slideInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  `,a([h({type:String})],y.prototype,"headline",2),a([h({type:String})],y.prototype,"subhead",2),a([h({type:String})],y.prototype,"ctaText",2),a([h({type:String})],y.prototype,"ctaLink",2),a([u()],y.prototype,"_totalProductsShipped",2),a([u()],y.prototype,"_monthsActive",2),a([u()],y.prototype,"_isLoadingStats",2),a([u()],y.prototype,"_statsError",2),a([u()],y.prototype,"_heroVisible",2),y=a([_("hero-section")],y);var $=class extends m{constructor(){super(...arguments);this.title="Project Title";this.role="Role / Technologies";this.imageUrl="";this.techStack=[];this.liveDemoLink="";this.githubRepoLink=""}_hashCode(e){let r=0;for(let i=0;i<e.length;i++){let o=e.charCodeAt(i);r=(r<<5)-r+o,r|=0}return Math.abs(r)}_getTechColorStyle(e){let r=this.constructor.techColorPalette,i=this._hashCode(e),o=r[i%r.length];return`background-color: ${o.bg}; color: ${o.text}; border-color: ${o.bg};`}render(){return c`
-      <div class="card-image-container">
-        ${this.imageUrl?c`<img src="${this.imageUrl}" alt="${this.title}" class="card-image">`:c`<div class="card-image empty-placeholder"></div>`}
-      </div>
-      <div class="card-content">
-        <h3>${this.title}</h3>
-        <p class="role">${this.role}</p>
-        ${this.techStack.length>0?c`
-              <div class="tech-stack">
-                ${this.techStack.map(e=>c`<span class="tech-tag" style="${this._getTechColorStyle(e)}">${e}</span>`)}
-              </div>
-            `:""}
-        <div class="links">
-          ${this.liveDemoLink?c`<a href="${this.liveDemoLink}" target="_blank" rel="noopener noreferrer">Live Demo</a>`:""}
-          ${this.githubRepoLink?c`<a href="${this.githubRepoLink}" target="_blank" rel="noopener noreferrer">GitHub Repo</a>`:""}
+  `,a([c({type:Number})],U.prototype,"endValue",2),a([c({type:Number})],U.prototype,"duration",2),a([u()],U.prototype,"_currentValue",2),U=a([_("metrics-counter")],U);var b=class extends m{constructor(){super(...arguments);this.headline="I build products that ship.";this.subhead="Full-stack developer. From concept to deployment, I create software people actually use.";this.ctaText="See the work \u2193";this.ctaLink="#projects";this._totalProductsShipped=null;this._monthsActive=null;this._isLoadingStats=!0;this._statsError=null}connectedCallback(){super.connectedCallback(),this._fetchStats()}_calculateMonthsBetween(e,i){let s=new Date(e),o=new Date(i);if(isNaN(s.getTime())||isNaN(o.getTime()))return 0;let n=(o.getFullYear()-s.getFullYear())*12;return n-=s.getMonth(),n+=o.getMonth(),n<=0?0:n}async _fetchStats(){this._isLoadingStats=!0,this._statsError=null;try{let e=await fetch("/data/stats.json");if(!e.ok)throw new Error(`HTTP error! status: ${e.status}`);let i=await e.json();this._totalProductsShipped=i.totalProductsShipped;let s="2025-12-17";i.firstReleaseDate?this._monthsActive=this._calculateMonthsBetween(i.firstReleaseDate,s):this._monthsActive=0}catch(e){console.error("Error fetching stats data:",e),this._statsError="Could not load stats.",this._totalProductsShipped=4,this._monthsActive=16}finally{this._isLoadingStats=!1}}render(){return h`
+      <h1 class="statement">${this.headline}</h1>
+      
+      <p class="bio">${this.subhead}</p>
+      
+      <div class="evidence">
+        <div class="evidence-item">
+          <span class="evidence-value">
+            ${this._isLoadingStats?"\u2014":this._totalProductsShipped}
+          </span>
+          <span class="evidence-label">Products Shipped</span>
+        </div>
+        <div class="evidence-item">
+          <span class="evidence-value">
+            ${this._isLoadingStats?"\u2014":this._monthsActive}
+          </span>
+          <span class="evidence-label">Months Active</span>
         </div>
       </div>
-    `}};$.styles=b`
+      
+      <a href="${this.ctaLink}" class="cta">${this.ctaText}</a>
+    `}};b.styles=v`
     :host {
       display: block;
-      /* border: 1px solid var(--card-bg, #E5E7EB); // Original border */
-      border-radius: 0.75rem; 
-      overflow: hidden;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-      background-color: var(--card-bg, #FFFFFF);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.03); 
-      border: 2px solid transparent; /* Prepare for dark mode border */
+      padding: 16vh 0 8vh 0;
+      border-bottom: 1px solid var(--border);
     }
 
-    :host([data-theme="dark"]) {
-        border-color: rgba(255,255,255,0.05); /* Critique: subtle 2px border in dark mode */
+    .statement {
+      font-family: var(--font-display);
+      font-size: var(--type-display);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 2rem 0;
+      color: var(--ink);
     }
 
-    :host(:hover) {
-      transform: translateY(-2px); /* Slight lift on card hover */
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.04); 
+    .bio {
+      font-size: var(--type-body);
+      line-height: 1.7;
+      color: var(--gray);
+      max-width: 540px;
+      margin: 0 0 2rem 0;
     }
 
-    .card-image-container {
-        overflow: hidden; 
-        background-color: var(--card-bg); /* Match card bg for empty state */
-        position: relative; /* For skeleton */
+    .evidence {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
     }
 
-    .card-image {
-        width: 100%;
-        height: 200px; 
-        object-fit: cover;
-        transition: transform 0.3s ease-out;
+    .evidence-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
     }
 
-    .card-image.empty-placeholder {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* Basic skeleton stripes */
-        background: linear-gradient(
-          100deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.08) 40%,
-          rgba(255, 255, 255, 0.08) 60%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        background-size: 400% 100%;
-        animation: skeletonShine 2s linear infinite;
+    .evidence-value {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--ink);
+      font-family: var(--font-body);
     }
 
-    :host([data-theme="light"]) .card-image.empty-placeholder {
-        background: linear-gradient(
-          100deg,
-          rgba(0, 0, 0, 0) 0%,
-          rgba(0, 0, 0, 0.03) 40%,
-          rgba(0, 0, 0, 0.03) 60%,
-          rgba(0, 0, 0, 0) 100%
-        );
-        background-size: 400% 100%; /* Must be repeated */
+    .evidence-label {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
-    @keyframes skeletonShine {
-      0% { background-position: 150% 0; }
-      100% { background-position: -150% 0; }
+    .cta {
+      display: inline-block;
+      font-size: var(--type-body);
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      transition: text-decoration-thickness var(--transition);
     }
 
-    :host(:hover) .card-image {
-        transform: scale(1.05); /* Thumbnail zoom */
+    .cta:hover {
+      text-decoration-thickness: 2px;
     }
 
-    .card-content {
-      padding: 1rem;
+    .loading-text, .error-message {
+      color: var(--gray);
+      font-size: var(--type-small);
+    }
+  `,a([c({type:String})],b.prototype,"headline",2),a([c({type:String})],b.prototype,"subhead",2),a([c({type:String})],b.prototype,"ctaText",2),a([c({type:String})],b.prototype,"ctaLink",2),a([u()],b.prototype,"_totalProductsShipped",2),a([u()],b.prototype,"_monthsActive",2),a([u()],b.prototype,"_isLoadingStats",2),a([u()],b.prototype,"_statsError",2),b=a([_("hero-section")],b);var $=class extends m{constructor(){super(...arguments);this.title="Project Title";this.role="Role";this.description="";this.imageUrl="";this.techStack=[];this.liveDemoLink="";this.githubRepoLink="";this._imageLoaded=!1;this._imageError=!1}_handleImageLoad(){this._imageLoaded=!0}_handleImageError(){this._imageError=!0}render(){let e=this.imageUrl&&!this._imageError;return h`
+      <article class="card">
+        <div class="card-header">
+          <h3>${this.title}</h3>
+          <span class="role">${this.role}</span>
+        </div>
+        
+        ${this.description?h`<p class="description">${this.description}</p>`:""}
+        
+        ${this.techStack.length>0?h`
+          <div class="tech-stack">
+            ${this.techStack.map(i=>h`<span class="tech-tag">${i}</span>`)}
+          </div>
+        `:""}
+        
+        <div class="links">
+          ${this.liveDemoLink?h`<a href="${this.liveDemoLink}" target="_blank" rel="noopener noreferrer">Live →</a>`:""}
+          ${this.githubRepoLink?h`<a href="${this.githubRepoLink}" target="_blank" rel="noopener noreferrer">Source →</a>`:""}
+        </div>
+
+        ${e?h`
+          <img 
+            src="${this.imageUrl}" 
+            alt="${this.title}" 
+            class="card-image ${this._imageLoaded?"":"hidden"}"
+            @load=${this._handleImageLoad}
+            @error=${this._handleImageError}
+            loading="lazy"
+          >
+        `:""}
+      </article>
+    `}};$.styles=v`
+    :host {
+      display: block;
+    }
+
+    .card {
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+      margin: 0 -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      transition: background var(--transition);
+    }
+
+    .card:hover {
+      background: var(--faint);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     h3 {
-      font-size: 1.125rem; /* 18px */
-      font-weight: 600;
-      margin: 0 0 0.25rem 0;
-      color: var(--text-color);
+      font-family: var(--font-display);
+      font-size: var(--type-headline);
+      font-weight: 400;
+      font-style: italic;
+      margin: 0;
+      color: var(--ink);
+      line-height: 1.2;
     }
 
-    p.role {
-      font-size: 0.875rem;
-      color: var(--text-color);
-      opacity: 0.7;
-      margin: 0 0 0.5rem 0;
+    .role {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .description {
+      color: var(--gray);
+      margin: 0 0 0.75rem 0;
+      max-width: 540px;
+      line-height: 1.6;
     }
 
     .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
       margin-bottom: 0.75rem;
-      padding-left: 0; /* Align with text */
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
     }
 
-    .tech-tag {
-      display: inline-block;
-      /* background-color and color will be set by inline styles */
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      margin-right: 0.25rem;
-      margin-bottom: 0.25rem;
-      border: 1px solid transparent; /* Ensure border consistency if overridden by themes */
+    .tech-tag::before {
+      content: '·';
+      margin-right: 0.75rem;
+    }
+
+    .tech-tag:first-child::before {
+      content: '';
+      margin-right: 0;
+    }
+
+    .links {
+      display: flex;
+      gap: 1.5rem;
     }
 
     .links a {
-      text-decoration: none;
-      color: var(--accent-color);
-      font-size: 0.875rem;
-      margin-right: 0.75rem;
-      transition: color 0.2s ease;
+      font-size: var(--type-small);
       font-weight: 500;
+      color: var(--ink);
     }
 
-    .links a:hover {
-      opacity: 0.8;
+    /* Image as evidence */
+    .card-image {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 1rem;
+      border: 1px solid var(--border);
     }
-  `,$.techColorPalette=[{bg:"#4338CA",text:"#FFFFFF"},{bg:"#047857",text:"#FFFFFF"},{bg:"#0369A1",text:"#FFFFFF"},{bg:"#B45309",text:"#FFFFFF"},{bg:"#BE185D",text:"#FFFFFF"},{bg:"#5B21B6",text:"#FFFFFF"},{bg:"#1E40AF",text:"#FFFFFF"}],a([h({type:String})],$.prototype,"title",2),a([h({type:String})],$.prototype,"role",2),a([h({type:String})],$.prototype,"imageUrl",2),a([h({type:Array})],$.prototype,"techStack",2),a([h({type:String})],$.prototype,"liveDemoLink",2),a([h({type:String})],$.prototype,"githubRepoLink",2),$=a([_("project-card")],$);var x=class extends m{constructor(){super(...arguments);this.projectsDataSrc="/data/projects.json";this.gridTitle="Featured Projects";this._projects=[];this._isLoadingProjects=!0;this._projectsError=null}connectedCallback(){super.connectedCallback(),this._fetchProjects()}async _fetchProjects(){this._isLoadingProjects=!0,this._projectsError=null;try{let e=await fetch(this.projectsDataSrc);if(!e.ok)throw new Error(`HTTP error! status: ${e.status} - ${e.statusText}`);this._projects=await e.json()}catch(e){console.error("Error fetching project data:",e),this._projectsError="Failed to load projects. Please check the console."}finally{this._isLoadingProjects=!1}}render(){return this._isLoadingProjects?c`<div class="loading-message">Loading projects...</div>`:this._projectsError?c`<div class="error-message">${this._projectsError}</div>`:this._projects.length===0?c`<div class="no-items-message">No projects to display yet.</div>`:c`
-      <section class="projects-section-container" style="scroll-margin-top: 6rem;">
-        ${this.gridTitle?c`<h2>${this.gridTitle}</h2>`:""}
-        <div class="grid-container">
-          ${this._projects.map(e=>c`
-              <project-card
-                .title=${e.title}
-                .role=${e.role}
-                .imageUrl=${e.imageUrl}
-                .liveDemoLink=${e.liveDemoLink}
-                .githubRepoLink=${e.githubRepoLink}
-                .techStack=${e.techStack||[]}
-              ></project-card>
-            `)}
+
+    .hidden {
+      display: none;
+    }
+  `,a([c({type:String})],$.prototype,"title",2),a([c({type:String})],$.prototype,"role",2),a([c({type:String})],$.prototype,"description",2),a([c({type:String})],$.prototype,"imageUrl",2),a([c({type:Array})],$.prototype,"techStack",2),a([c({type:String})],$.prototype,"liveDemoLink",2),a([c({type:String})],$.prototype,"githubRepoLink",2),a([u()],$.prototype,"_imageLoaded",2),a([u()],$.prototype,"_imageError",2),$=a([_("project-card")],$);var A=class extends m{constructor(){super(...arguments);this.projectsDataSrc="/data/projects.json";this.gridTitle="Work";this.gridSubtitle="Selected projects";this._projects=[];this._isLoadingProjects=!0;this._projectsError=null}connectedCallback(){super.connectedCallback(),this._fetchProjects()}async _fetchProjects(){this._isLoadingProjects=!0,this._projectsError=null;try{let e=await fetch(this.projectsDataSrc);if(!e.ok)throw new Error(`HTTP error! status: ${e.status}`);this._projects=await e.json()}catch(e){console.error("Error fetching project data:",e),this._projectsError="Failed to load projects."}finally{this._isLoadingProjects=!1}}render(){return this._isLoadingProjects?h`<div class="loading-message">Loading...</div>`:this._projectsError?h`<div class="error-message">${this._projectsError}</div>`:this._projects.length===0?h`<div class="no-items-message">No projects yet.</div>`:h`
+      <section id="projects">
+        <div class="section-header">
+          ${this.gridTitle?h`<h2>${this.gridTitle}</h2>`:""}
+          ${this.gridSubtitle?h`<p class="section-subtitle">${this.gridSubtitle}</p>`:""}
+        </div>
+        <div class="project-list">
+          ${this._projects.map(e=>h`
+            <project-card
+              .title=${e.title}
+              .role=${e.role}
+              .description=${e.description||""}
+              .imageUrl=${e.imageUrl}
+              .liveDemoLink=${e.liveDemoLink}
+              .githubRepoLink=${e.githubRepoLink}
+              .techStack=${e.techStack||[]}
+            ></project-card>
+          `)}
         </div>
       </section>
-    `}};x.styles=b`
+    `}};A.styles=v`
     :host {
       display: block;
-      margin-bottom: 2rem; /* Space after this content block */
-    }
-    .projects-section-container { /* Renamed from -card to -container */
-      padding: 0rem; /* Adjust padding if needed, or rely on main tag's padding */
-      margin: 0 auto;
-      max-width: var(--max-width);
-    }
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
-      justify-content: center; /* Centers grid tracks if their total width is less than container */
-      justify-items: center; /* ADDED: Centers items within their grid cells */
-      /* max-width is now on .projects-section-container */
-    }
-    h2 {
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      margin-top: 0; /* No margin if it's the first child of the card */
-      margin-bottom: 1.5rem;
-      text-align: center;
-      color: var(--text-color);
+      padding: 4rem 0;
     }
 
-    /* Scroll snap properties if desired for the section */
-    /* This might be better on a parent container in index.html or a main app shell */
-    /* For now, keeping it simple within the component */
-    /* 
-    :host {
-        scroll-snap-align: start;
+    .section-header {
+      margin-bottom: 3rem;
     }
-    */
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: var(--type-headline);
+      font-weight: 400;
+      font-style: italic;
+      margin: 0 0 0.5rem 0;
+      color: var(--ink);
+    }
+
+    .section-subtitle {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+    }
+
     .loading-message, .error-message, .no-items-message {
-      text-align: center;
-      padding: 1rem;
-      color: var(--text-color);
-      opacity: 0.7;
+      padding: 2rem 0;
+      color: var(--gray);
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
     }
-  `,a([h({type:String})],x.prototype,"projectsDataSrc",2),a([h({type:String})],x.prototype,"gridTitle",2),a([u()],x.prototype,"_projects",2),a([u()],x.prototype,"_isLoadingProjects",2),a([u()],x.prototype,"_projectsError",2),x=a([_("project-grid")],x);var k=class extends m{constructor(){super(...arguments);this.dataSrc="/data/releases.json";this.timelineTitle="Shipping Journey";this._items=[];this._isLoading=!0;this._error=null;this._observer=null;this._itemObservers=new Map}connectedCallback(){super.connectedCallback(),this._fetchData()}disconnectedCallback(){super.disconnectedCallback(),this._itemObservers.forEach(e=>e.disconnect()),this._itemObservers.clear()}async _fetchData(){this._isLoading=!0,this._error=null;try{let e=await fetch(this.dataSrc);if(!e.ok)throw new Error(`HTTP error! status: ${e.status} - ${e.statusText}`);this._items=await e.json()}catch(e){console.error("Error fetching timeline data:",e),this._error="Failed to load timeline data. Please check the console for more details."}this._isLoading=!1,this.requestUpdate()}updated(e){super.updated(e),(e.has("_items")||e.has("_isLoading"))&&!this._isLoading&&this._items.length>0&&this._observeItems()}_observeItems(){this.shadowRoot?.querySelectorAll(".timeline-item")?.forEach(r=>{if(this._itemObservers.has(r))return;let i=new IntersectionObserver(([o])=>{o.isIntersecting&&(o.target.classList.add("visible"),i.unobserve(o.target),this._itemObservers.delete(o.target))},{threshold:.4});i.observe(r),this._itemObservers.set(r,i)})}render(){return this._isLoading?c`<div class="loading-message">Loading timeline...</div>`:this._error?c`<div class="error-message">${this._error}</div>`:this._items.length===0?c`<div class="no-items-message">No releases yet. Stay tuned!</div>`:c`
-      <section class="timeline-section-container" id="timeline" style="scroll-margin-top: 6rem;">
-        ${this.timelineTitle?c`<h2>${this.timelineTitle}</h2>`:""}
+  `,a([c({type:String})],A.prototype,"projectsDataSrc",2),a([c({type:String})],A.prototype,"gridTitle",2),a([c({type:String})],A.prototype,"gridSubtitle",2),a([u()],A.prototype,"_projects",2),a([u()],A.prototype,"_isLoadingProjects",2),a([u()],A.prototype,"_projectsError",2),A=a([_("project-grid")],A);var S=class extends m{constructor(){super(...arguments);this.dataSrc="/data/releases.json";this.timelineTitle="Timeline";this.timelineSubtitle="Recent releases";this._items=[];this._isLoading=!0;this._error=null}connectedCallback(){super.connectedCallback(),this._fetchData()}async _fetchData(){this._isLoading=!0,this._error=null;try{let e=await fetch(this.dataSrc);if(!e.ok)throw new Error(`HTTP error! status: ${e.status}`);this._items=await e.json()}catch(e){console.error("Error fetching timeline data:",e),this._error="Failed to load timeline."}this._isLoading=!1}_formatDate(e){return new Date(e).toLocaleDateString("en-US",{month:"short",year:"numeric"})}render(){return this._isLoading?h`<div class="loading-message">Loading...</div>`:this._error?h`<div class="error-message">${this._error}</div>`:this._items.length===0?h`<div class="no-items-message">No releases yet.</div>`:h`
+      <section id="timeline">
+        <div class="section-header">
+          ${this.timelineTitle?h`<h2>${this.timelineTitle}</h2>`:""}
+          ${this.timelineSubtitle?h`<p class="section-subtitle">${this.timelineSubtitle}</p>`:""}
+        </div>
         <div class="timeline">
-          ${this._items.map(e=>c`
-            <div class="timeline-item" id="timeline-item-${e.id}">
-              <div class="timeline-dot"></div>
+          ${this._items.map(e=>h`
+            <div class="timeline-item">
+              <div class="timeline-date">${this._formatDate(e.date)}</div>
               <div class="timeline-content">
-                <div class="timeline-date">${e.date}</div>
                 <div class="timeline-title">${e.title}</div>
                 <div class="timeline-description">${e.description}</div>
-                ${e.link?c`<div class="timeline-link"><a href="${e.link}" target="_blank" rel="noopener noreferrer">View Details</a></div>`:""}
+                ${e.link?h`<a href="${e.link}" target="_blank" rel="noopener noreferrer" class="timeline-link">View →</a>`:""}
               </div>
             </div>
           `)}
         </div>
       </section>
-    `}};k.styles=b`
+    `}};S.styles=v`
     :host {
       display: block;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
       margin-bottom: 2rem;
     }
-    .timeline-section-container {
-      padding: 0rem;
-      margin: 0 auto;
-      max-width: var(--max-width);
-    }
+
     h2 {
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      margin-top: 0;
-      margin-bottom: 2rem; /* More space for title */
-      text-align: center;
-      color: var(--text-color);
+      font-family: var(--font-display);
+      font-size: var(--type-headline);
+      font-weight: 400;
+      font-style: italic;
+      margin: 0 0 0.5rem 0;
+      color: var(--ink);
     }
+
+    .section-subtitle {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
     .timeline {
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 1rem 0 1rem 32px;
+      display: flex;
+      flex-direction: column;
     }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background-image: linear-gradient(to bottom, rgba(var(--accent-color-rgb), 0.35) 0%, rgba(var(--accent-color-rgb), 0.35) 50%, transparent 50%);
-      background-size: 1px 8px;
-      background-repeat: repeat-y;
-    }
+
     .timeline-item {
-      position: relative;
-      margin-bottom: 2rem; /* Increased spacing */
-      padding-left: 40px; /* More space for dot and line */
-      opacity: 0; /* For fade-in */
-      transform: translateY(20px); /* For fade-in */
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      margin: 0 -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-top: 1px solid var(--border);
+      transition: background var(--transition);
     }
-    .timeline-item.visible {
-      opacity: 1;
-      transform: translateY(0);
+
+    .timeline-item:hover {
+      background: var(--faint);
     }
-    /* Basic alternating content alignment */
-    /* For a more robust zig-zag, a different HTML structure might be needed */
-    .timeline-item:nth-child(even) .timeline-content {
-      /* text-align: right; */ /* Can be too jarring, consider subtle shift or just visual elements */
-      /* margin-left: auto; */
+
+    @media (max-width: 600px) {
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
     }
-    .timeline-dot {
-      position: absolute;
-      left: 0;
-      top: 5px;
-      width: 16px; /* Larger dot */
-      height: 16px;
-      border-radius: 50%;
-      background-color: var(--accent-color);
-      border: 3px solid var(--page-bg); /* Use page-bg for better contrast */
-      z-index: 1;
-    }
+
     .timeline-date {
-      font-size: 0.8rem;
-      color: var(--text-color);
-      opacity: 0.6;
-      margin-bottom: 0.25rem;
-      font-weight: 500;
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
     }
+
+    .timeline-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
     .timeline-title {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-      color: var(--text-color);
-    }
-    .timeline-description {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 0.5rem;
-      color: var(--text-color);
-      opacity: 0.85;
-    }
-    .timeline-link a {
-      font-size: 0.875rem;
-      color: var(--accent-color);
-      text-decoration: none;
       font-weight: 500;
+      color: var(--ink);
+      line-height: 1.4;
     }
-    .timeline-link a:hover {
-      text-decoration: underline;
+
+    .timeline-description {
+      color: var(--gray);
+      line-height: 1.6;
     }
+
+    .timeline-link {
+      font-size: var(--type-small);
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 0.25rem;
+    }
+
     .loading-message, .error-message, .no-items-message {
-      text-align: center;
-      padding: 1rem;
-      color: var(--text-color);
-      opacity: 0.7;
+      padding: 2rem 0;
+      color: var(--gray);
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
     }
-  `,a([h({type:String})],k.prototype,"dataSrc",2),a([h({type:String})],k.prototype,"timelineTitle",2),a([u()],k.prototype,"_items",2),a([u()],k.prototype,"_isLoading",2),a([u()],k.prototype,"_error",2),k=a([_("timeline-list")],k);var E=class extends m{constructor(){super(...arguments);this.aboutTitle="Get In Touch";this.bioPart1="I build.";this.linkedinUrl="https://www.linkedin.com/in/issack-john/";this.githubUrl="https://github.com/issackj1"}render(){return c`
-      <section class="about-section-container" id="about" style="scroll-margin-top: 6rem;">
-        <h2>${this.aboutTitle}</h2>
-        <p class="bio-part1">${this.bioPart1}</p>
+  `,a([c({type:String})],S.prototype,"dataSrc",2),a([c({type:String})],S.prototype,"timelineTitle",2),a([c({type:String})],S.prototype,"timelineSubtitle",2),a([u()],S.prototype,"_items",2),a([u()],S.prototype,"_isLoading",2),a([u()],S.prototype,"_error",2),S=a([_("timeline-list")],S);var k=class extends m{constructor(){super(...arguments);this.aboutTitle="Contact";this.bio="Available for new opportunities. Let's build something.";this.linkedinUrl="https://www.linkedin.com/in/issack-john/";this.githubUrl="https://github.com/issackj1"}render(){return h`
+      <section id="about">
+        <div class="section-header">
+          <h2>${this.aboutTitle}</h2>
+          <p class="section-subtitle">Get in touch</p>
+        </div>
+        <p class="bio">${this.bio}</p>
         <div class="contact-links">
-          ${this.linkedinUrl?c`<a href="${this.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="text-link">LinkedIn</a>`:""}
-          ${this.githubUrl?c`<a href="${this.githubUrl}" target="_blank" rel="noopener noreferrer" class="text-link">GitHub</a>`:""}
+          ${this.linkedinUrl?h`<a href="${this.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn →</a>`:""}
+          ${this.githubUrl?h`<a href="${this.githubUrl}" target="_blank" rel="noopener noreferrer" class="social-link">GitHub →</a>`:""}
         </div>
       </section>
-    `}};E.styles=b`
+    `}};k.styles=v`
     :host {
       display: block;
-      margin-bottom: 2rem; /* Space after this content block */
+      padding: 4rem 0;
     }
-    .about-section-container { /* Renamed from -card to -container */
-      padding: 1rem 0; /* Padding for content within the container if needed */
-      text-align: center;
-      margin: 0 auto;
-      max-width: var(--max-width);
+
+    .section-header {
+      margin-bottom: 2rem;
     }
+
     h2 {
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      margin-top: 0;
-      margin-bottom: 1.5rem; /* Increased margin after title */
-      color: var(--text-color);
+      font-family: var(--font-display);
+      font-size: var(--type-headline);
+      font-weight: 400;
+      font-style: italic;
+      margin: 0 0 0.5rem 0;
+      color: var(--ink);
     }
-    p.bio-part1 {
-      font-size: 1.05rem; 
-      line-height: 1.7; 
-      max-width: 600px;
-      margin: 0 auto 2rem auto; /* Adjusted bottom margin to 2rem */
-      color: var(--text-color);
-      opacity: 0.85;
+
+    .section-subtitle {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
-    .contact-links .accent-button {
-      display: inline-block;
-      margin: 0.5rem 0.75rem;
-      padding: 0.875rem 1.75rem; /* Match hero CTA */
-      background-color: var(--accent-color);
-      color: var(--page-bg); /* Text color contrasting with accent */
-      text-decoration: none;
-      border-radius: 0.5rem; /* 8px */
+
+    p.bio {
+      font-size: var(--type-body);
+      line-height: 1.8;
+      max-width: 540px;
+      margin: 0 0 2rem 0;
+      color: var(--gray);
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
       font-weight: 500;
-      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      position: relative; /* For ripple */
-      overflow: hidden; /* For ripple */
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      color: var(--ink);
     }
-    .contact-links .accent-button:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--button-shadow-hover, 0 4px 12px rgba(79, 70, 229, 0.3));
-    }
-    .contact-links .accent-button::after { /* Ripple effect */
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      background-image: radial-gradient(circle, var(--text-color) 10%, transparent 10.01%);
-      background-repeat: no-repeat;
-      background-position: 50%;
-      transform: scale(10, 10);
-      opacity: 0;
-      transition: transform .3s, opacity .5s;
-    }
-    .contact-links .accent-button:active::after {
-      transform: scale(0, 0);
-      opacity: .2;
-      transition: 0s;
-    }
-    .contact-links .text-link {
-      display: inline-block;
-      margin: 0.5rem 0.75rem;
-      color: var(--accent-color);
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: 500;
-      opacity: 0.7; /* Critique: Lower opacity for secondary links */
-    }
-    .contact-links .text-link:hover {
-      text-decoration: underline;
-      opacity: 0.9; /* Slightly more opaque on hover */
-    }
-  `,a([h({type:String})],E.prototype,"aboutTitle",2),a([h({type:String})],E.prototype,"bioPart1",2),a([h({type:String})],E.prototype,"linkedinUrl",2),a([h({type:String})],E.prototype,"githubUrl",2),E=a([_("about-me")],E);var V=class extends m{render(){return c`
-      <div class="footer-content">
-        <div class="legal-text">
-          &copy; ${new Date().getFullYear()} Issack John. All rights reserved. 
+  `,a([c({type:String})],k.prototype,"aboutTitle",2),a([c({type:String})],k.prototype,"bio",2),a([c({type:String})],k.prototype,"linkedinUrl",2),a([c({type:String})],k.prototype,"githubUrl",2),k=a([_("about-me")],k);var N=class extends m{constructor(){super(...arguments);this.copyrightYear=new Date().getFullYear().toString()}render(){return h`
+      <footer>
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="#projects">Work</a>
+            <a href="#timeline">Timeline</a>
+            <a href="#about">Contact</a>
+          </div>
+          <p>© ${this.copyrightYear}</p>
         </div>
-      </div>
-    `}};V.styles=b`
+      </footer>
+    `}};N.styles=v`
     :host {
       display: block;
-      padding: 1.5rem 1rem; /* Increased padding slightly */
-      background-color: var(--footer-bg-color, #0E1014);
-      color: var(--footer-text-color, #9CA3AF);
-      font-size: 0.875rem;
-      border-top: 1px solid rgba(var(--text-color-rgb, 232, 234, 237), 0.1); 
     }
-    .footer-content {
-      max-width: var(--max-width, 72rem);
+
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      max-width: var(--max-width);
       margin: 0 auto;
+    }
+
+    .footer-content {
       display: flex;
-      justify-content: center; /* Center legal text now */
+      justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       gap: 1rem;
     }
-    .legal-text {
-      opacity: 0.8;
-      text-align: center;
-    }
-    .legal-text a {
-      color: var(--footer-text-color, #9CA3AF);
-      text-decoration: none;
-    }
-    .legal-text a:hover {
-      text-decoration: underline;
-      opacity: 1;
-    }
-  `,V=a([_("footer-bar")],V);var D=class extends m{constructor(){super(...arguments);this._isDarkMode=!1;this._iconRotation=0}connectedCallback(){super.connectedCallback();let e=localStorage.getItem("theme");e==="dark"?this._isDarkMode=!0:e==="light"?this._isDarkMode=!1:this._isDarkMode=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,this._applyTheme(),this._iconRotation=this._isDarkMode?0:180,window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",r=>{localStorage.getItem("theme")||(this._isDarkMode=r.matches,this._applyTheme(),this._iconRotation=this._isDarkMode?this._iconRotation-180:this._iconRotation+180)})}_toggleTheme(){this._isDarkMode=!this._isDarkMode,localStorage.setItem("theme",this._isDarkMode?"dark":"light"),this._applyTheme(),this._iconRotation+=180}_applyTheme(){document.documentElement.setAttribute("data-theme",this._isDarkMode?"dark":"light")}render(){let e=this._isDarkMode?"\u2600\uFE0F":"\u{1F319}";return c`
-      <button 
-        class="toggle-button"
-        @click="${this._toggleTheme}" 
-        title="Toggle theme"
-        aria-label="Toggle theme">
-        <span class="icon" style="transform: rotate(${this._iconRotation}deg);">${e}</span>
-      </button>
-    `}};D.styles=b`
-    :host {
-      display: block;
-      position: fixed;
-      top: 3rem; /* 48px from edge */
-      right: 3rem; /* 48px from edge */
-      z-index: 1000; /* Ensure it's on top */
-    }
-    .toggle-button {
-      background: none;
-      border: 1px solid transparent;
-      color: var(--text-color);
-      padding: 0.5rem;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.5rem; /* Icon size */
-      line-height: 1;
-      width: 48px; /* Button size */
-      height: 48px;
+
+    .footer-links {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease-in-out, color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      gap: 1.5rem;
     }
-    .toggle-button:hover {
-      background-color: rgba(var(--accent-color-rgb), 0.1);
-      border-color: transparent;
+
+    .footer-links a {
+      font-size: var(--type-small);
+      color: var(--gray);
     }
-    .icon {
-      display: inline-block;
-      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy rotation */
+
+    p {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--gray);
     }
-  `,a([u()],D.prototype,"_isDarkMode",2),a([u()],D.prototype,"_iconRotation",2),D=a([_("theme-toggle")],D);console.log("Portfolio components loaded.");
+  `,a([c({type:String})],N.prototype,"copyrightYear",2),N=a([_("footer-bar")],N);var z=class extends m{constructor(){super(...arguments);this._isDark=!1}connectedCallback(){super.connectedCallback();let e=localStorage.getItem("theme");e?this._isDark=e==="dark":this._isDark=window.matchMedia("(prefers-color-scheme: dark)").matches,this._applyTheme()}_applyTheme(){document.documentElement.setAttribute("data-theme",this._isDark?"dark":"light"),this.setAttribute("data-theme",this._isDark?"dark":"light"),localStorage.setItem("theme",this._isDark?"dark":"light")}_toggleTheme(){this._isDark=!this._isDark,this._applyTheme()}render(){return h`
+      <button 
+        @click=${this._toggleTheme} 
+        aria-label="Toggle theme"
+        title="${this._isDark?"Switch to light mode":"Switch to dark mode"}"
+      >
+        ${this._isDark?"Light":"Dark"}
+      </button>
+    `}};z.styles=v`
+    :host {
+      position: fixed;
+      top: 1.5rem;
+      right: 2rem;
+      z-index: 1000;
+    }
+
+    button {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      padding: 0.5rem 0.75rem;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      cursor: pointer;
+      transition: opacity var(--transition);
+    }
+
+    button:hover {
+      opacity: 0.6;
+    }
+  `,a([u()],z.prototype,"_isDark",2),z=a([_("theme-toggle")],z);console.log("Portfolio components loaded.");
 /*! Bundled license information:
 
 @lit/reactive-element/css-tag.js:

@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <meta name="description" content="A portfolio showcasing shipped products and projects.">
-    
+    <title>Issack John | Full-Stack Developer</title>
+    <meta name="description" content="A portfolio showcasing shipped products and projects. Building products, faster.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
     <link rel="icon" href="/assets/favicon.ico" sizes="any">
     <link rel="icon" href="/assets/logo192.png" type="image/png" sizes="192x192">
     <link rel="icon" href="/assets/logo512.png" type="image/png" sizes="512x512">
@@ -13,67 +20,106 @@
     <link rel="manifest" href="/manifest.json">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Portfolio">
-    <meta property="og:description" content="A portfolio showcasing shipped products and projects.">
+    <meta property="og:title" content="Issack John | Full-Stack Developer">
+    <meta property="og:description"
+        content="A portfolio showcasing shipped products and projects. Building products, faster.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://issackj1.github.io/"> <!-- Replace with actual URL -->
-    <!-- <meta property="og:image" content="https://yourusername.github.io/og-image.jpg"> --> <!-- Replace with actual image URL -->
+    <meta property="og:url" content="https://issackj1.github.io/">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <!-- <meta name="twitter:site" content="@yourtwitterhandle"> --> <!-- Optional: Twitter handle -->
-    <meta name="twitter:title" content="Portfolio">
-    <meta name="twitter:description" content="A portfolio showcasing shipped products and projects.">
-    <!-- <meta name="twitter:image" content="https://yourusername.github.io/twitter-card-image.jpg"> --> <!-- Replace with actual image URL -->
+    <meta name="twitter:title" content="Issack John | Full-Stack Developer">
+    <meta name="twitter:description"
+        content="A portfolio showcasing shipped products and projects. Building products, faster.">
 
     <style>
         :root {
-            /* Light Theme Variables (Defaults) */
-            --page-bg: #F5F7F9;
-            --card-bg: #FFFFFF;
-            --text-color: #1E1E1E;
-            --accent-color-rgb: 79, 70, 229; /* Indigo-500 #4F46E5 */
-            --accent-color: rgb(var(--accent-color-rgb));
-            --hero-bg-color-wash: rgba(var(--accent-color-rgb), 0.1);
-            --footer-bg-color: #E5E7EB; /* Keeping previous footer color for now, can be adjusted */
-            --footer-text-color: #4B5563;
-            --max-width: 72rem;
-            --font-primary: 'Inter Tight', 'Inter var', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-            --button-shadow-hover: 0 4px 12px rgba(var(--accent-color-rgb), 0.3), 0 2px 6px rgba(var(--accent-color-rgb), 0.2);
-            --card-content-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06);
-            --card-content-radius: 12px;
+            /* 
+             * THE PROOF
+             * A portfolio as evidence. No decoration. Pure confidence.
+             * Typography does all the work. Restraint IS the design.
+             */
+
+            /* Type Scale */
+            --type-display: clamp(2.75rem, 8vw, 5rem);
+            --type-headline: clamp(1.5rem, 4vw, 2.25rem);
+            --type-body: 1.0625rem;
+            --type-small: 0.875rem;
+            --type-mono: 0.8125rem;
+
+            /* Fonts */
+            --font-display: 'Times New Roman', 'Times', Georgia, serif;
+            --font-body: 'Inter', -apple-system, system-ui, sans-serif;
+            --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+
+            /* Light mode */
+            --ink: #000000;
+            --paper: #FFFFFF;
+            --gray: #555555;
+            --faint: #F0F0F0;
+            --border: #E0E0E0;
+
+            /* Zero decoration */
+            --radius: 0;
+
+            /* Spacing */
+            --max-width: 52rem;
+            --transition: 100ms ease;
         }
 
         :root[data-theme="dark"] {
-            /* Dark Theme Variables */
-            --page-bg: #0E1014;
-            --card-bg: #1F2937; /* A bit lighter than pure black for cards */
-            --text-color: #E8EAED;
-            --accent-color-rgb: 99, 102, 241; /* Indigo-400 #6366F1 */
-            --accent-color: rgb(var(--accent-color-rgb));
-            --hero-bg-color-wash: rgba(var(--accent-color-rgb), 0.1);
-            --footer-bg-color: #0E1014; /* Match dark page bg or slightly different */
-            --footer-text-color: #9CA3AF;
+            --ink: #FFFFFF;
+            --paper: #0A0A0A;
+            --gray: #AAAAAA;
+            --faint: #151515;
+            --border: #252525;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: var(--font-primary);
-            background-color: var(--page-bg);
-            color: var(--text-color);
+            font-family: var(--font-body);
+            font-size: var(--type-body);
+            background: var(--paper);
+            color: var(--ink);
             margin: 0;
             padding: 0;
-            scroll-behavior: smooth;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
+
         main {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 1rem; 
+            padding: 0 2rem;
         }
-        /* Add more global styles or resets here if needed */
+
+        ::selection {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+        }
+
+        a:hover {
+            text-decoration-thickness: 2px;
+        }
     </style>
     <script type="module" src="./bundle.js"></script>
 </head>
+
 <body>
     <theme-toggle></theme-toggle>
     <main>
@@ -84,4 +130,5 @@
     </main>
     <footer-bar></footer-bar>
 </body>
-</html> 
+
+</html>
