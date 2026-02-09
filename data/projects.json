@@ -29,6 +29,17 @@
     "githubRepoLink": "https://github.com/issackj1/issackj1.github.io"
   },
   {
+    "title": "James Peralta",
+    "role": "Design & Full-stack Dev",
+    "techStack": [
+      "Webflow",
+      "Responsive Design"
+    ],
+    "description": "Redesigned the marketing site with a refreshed visual system, improved structure, and clear calls to action.",
+    "liveDemoLink": "https://jamesperalta.com",
+    "githubRepoLink": ""
+  },
+  {
     "title": "Meme Genius AI",
     "role": "Design & Full-stack Dev",
     "techStack": [
