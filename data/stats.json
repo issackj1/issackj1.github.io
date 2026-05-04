@@ -1,4 +1,6 @@
 {
-  "totalProductsShipped": 6,
-  "firstReleaseDate": "2024-01-27"
+  "totalProductsShipped": 10,
+  "liveSystems": 7,
+  "firstReleaseDate": "2024-01-27",
+  "latestReleaseDate": "2026-05-03"
 }
