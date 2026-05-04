@@ -95,6 +95,14 @@
     "type": "release"
   },
   {
+    "id": "ufc-calendar-landing-page-launch",
+    "date": "2021-05-18",
+    "title": "UFC Calendar landing page launched",
+    "description": "Launched the official landing page for the UFC Calendar project at ufccalendar.tech.",
+    "link": "https://ufccalendar.tech/",
+    "type": "release"
+  },
+  {
     "id": "ufc-calendar-extension-launch",
     "date": "2021-05-10",
     "title": "UFC Calendar extension launched",

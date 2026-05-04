@@ -1,6 +1,5 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import './metrics-counter.ts';
 
 @customElement('hero-section')
 export class HeroSection extends LitElement {
@@ -79,7 +78,7 @@ export class HeroSection extends LitElement {
       transform: translateY(-2px);
       background: var(--accent);
       border-color: var(--accent);
-      color: white;
+      color: var(--paper);
     }
 
     .kicker {
@@ -157,9 +156,6 @@ export class HeroSection extends LitElement {
     } catch (e) {
       console.error('Error fetching stats data:', e);
       this._statsError = 'Could not load stats.';
-      this._totalProductsShipped = 10;
-      this._liveSystems = 7;
-      this._monthsActive = 27;
     } finally {
       this._isLoadingStats = false;
     }
@@ -172,26 +168,30 @@ export class HeroSection extends LitElement {
       
       <p class="bio">${this.subhead}</p>
       
-      <div class="evidence">
-        <div class="evidence-item">
-          <span class="evidence-value">
-            ${this._isLoadingStats ? '—' : this._totalProductsShipped}
-          </span>
-          <span class="evidence-label">Products Shipped</span>
+      ${this._statsError ? html`
+        <div class="error-message">${this._statsError}</div>
+      ` : html`
+        <div class="evidence">
+          <div class="evidence-item">
+            <span class="evidence-value">
+              ${this._isLoadingStats ? '—' : this._totalProductsShipped}
+            </span>
+            <span class="evidence-label">Products Shipped</span>
+          </div>
+          <div class="evidence-item">
+            <span class="evidence-value">
+              ${this._isLoadingStats ? '—' : this._liveSystems}
+            </span>
+            <span class="evidence-label">Live Systems</span>
+          </div>
+          <div class="evidence-item">
+            <span class="evidence-value">
+              ${this._isLoadingStats ? '—' : this._monthsActive}
+            </span>
+            <span class="evidence-label">Months Active</span>
+          </div>
         </div>
-        <div class="evidence-item">
-          <span class="evidence-value">
-            ${this._isLoadingStats ? '—' : this._liveSystems}
-          </span>
-          <span class="evidence-label">Live Systems</span>
-        </div>
-        <div class="evidence-item">
-          <span class="evidence-value">
-            ${this._isLoadingStats ? '—' : this._monthsActive}
-          </span>
-          <span class="evidence-label">Months Active</span>
-        </div>
-      </div>
+      `}
       
       <a href="${this.ctaLink}" class="cta">${this.ctaText}</a>
     `;

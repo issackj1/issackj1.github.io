@@ -9,7 +9,6 @@ colors:
   neutral: "#fbf7ef"
   faint: "#efe7d8"
   border: "#d7cbb7"
-  inverse: "#ffffff"
   dark-primary: "#f3ead8"
   dark-neutral: "#080807"
 typography:
@@ -102,7 +101,7 @@ components:
     padding: 13px 16px
   button-primary-hover:
     backgroundColor: "{colors.tertiary}"
-    textColor: "{colors.inverse}"
+    textColor: "{colors.neutral}"
     rounded: "{rounded.sm}"
     padding: 13px 16px
   timeline-item:
@@ -189,6 +188,14 @@ Use real screenshots when available. For private systems or work without a suita
 ### Ship log
 
 The ship log is reverse chronological and should read like release evidence. Include only meaningful releases or milestones. Keep descriptions short and outcome-oriented.
+
+## Interaction patterns
+
+**Links:** Underlined with 1px thickness, offset 3px. On hover, thickness increases to 2px. No color change, no transforms.
+
+**Buttons:** Filled solid (`--ink` background, `--paper` text). On hover, background shifts to `--tertiary` (accent) and lifts 2px via `translateY`. Keep this pattern reserved for the primary CTA only.
+
+**Rows:** On hover, background tints to `--faint`. No shadows, no scale transforms. Project rows shift right 4px for scanability (disabled on mobile).
 
 ## Do's and Don'ts
 
