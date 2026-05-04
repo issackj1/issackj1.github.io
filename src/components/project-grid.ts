@@ -44,7 +44,6 @@ export class ProjectGrid extends LitElement {
     .project-list {
       display: flex;
       flex-direction: column;
-      border-top: 1px solid var(--border);
     }
 
     .loading-message, .error-message, .no-items-message {
@@ -56,8 +55,8 @@ export class ProjectGrid extends LitElement {
   `;
 
   @property({ type: String }) projectsDataSrc = '/data/projects.json';
-  @property({ type: String }) gridTitle = 'Shipped work';
-  @property({ type: String }) gridSubtitle = 'Public proof + private systems';
+  @property({ type: String }) gridTitle = 'Work';
+  @property({ type: String }) gridSubtitle = 'Selected projects';
 
   @state() private _projects: ProjectData[] = [];
   @state() private _isLoadingProjects = true;

@@ -107,8 +107,8 @@ export class TimelineList extends LitElement {
   `;
 
   @property({ type: String }) dataSrc = '/data/releases.json';
-  @property({ type: String }) timelineTitle = 'Ship log';
-  @property({ type: String }) timelineSubtitle = 'Recent releases and milestones';
+  @property({ type: String }) timelineTitle = 'Timeline';
+  @property({ type: String }) timelineSubtitle = 'Recent releases';
 
   @state() private _items: TimelineItemData[] = [];
   @state() private _isLoading = true;

@@ -6,19 +6,17 @@ export class HeroSection extends LitElement {
   static styles = css`
     :host {
       display: block;
-      padding: 14vh 0 8vh 0;
+      padding: 16vh 0 8vh 0;
       border-bottom: 1px solid var(--border);
-      position: relative;
     }
 
     .statement {
       font-family: var(--font-display);
       font-size: var(--type-display);
-      font-weight: 500;
+      font-weight: 400;
       font-style: italic;
-      line-height: 0.92;
-      letter-spacing: -0.055em;
-      max-width: 12ch;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
       margin: 0 0 2rem 0;
       color: var(--ink);
     }
@@ -27,7 +25,7 @@ export class HeroSection extends LitElement {
       font-size: var(--type-body);
       line-height: 1.7;
       color: var(--gray);
-      max-width: 650px;
+      max-width: 540px;
       margin: 0 0 2rem 0;
     }
 
@@ -35,9 +33,7 @@ export class HeroSection extends LitElement {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
-      margin-bottom: 2.25rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
+      margin-bottom: 2rem;
       font-family: var(--font-mono);
       font-size: var(--type-mono);
       color: var(--gray);
@@ -53,8 +49,7 @@ export class HeroSection extends LitElement {
       font-size: 1.5rem;
       font-weight: 500;
       color: var(--ink);
-      font-family: var(--font-display);
-      font-style: italic;
+      font-family: var(--font-body);
     }
 
     .evidence-label {
@@ -66,28 +61,15 @@ export class HeroSection extends LitElement {
       display: inline-block;
       font-size: var(--type-body);
       font-weight: 500;
-      color: var(--paper);
-      background: var(--ink);
-      text-decoration: none;
-      padding: 0.8rem 1rem;
-      border: 1px solid var(--ink);
-      transition: transform var(--transition), background var(--transition), color var(--transition);
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+      transition: text-decoration-thickness var(--transition);
     }
 
     .cta:hover {
-      transform: translateY(-2px);
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--paper);
-    }
-
-    .kicker {
-      font-family: var(--font-mono);
-      font-size: var(--type-mono);
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      margin-bottom: 1.25rem;
+      text-decoration-thickness: 2px;
     }
 
     .loading-text, .error-message {
@@ -97,13 +79,13 @@ export class HeroSection extends LitElement {
   `;
 
   @property({ type: String })
-  headline = 'Software with receipts.';
+  headline = 'I build products that ship.';
 
   @property({ type: String })
-  subhead = 'Product engineer shipping AI tutors, clinical simulators, stream tools, private CRMs, and public software — measured by deployed systems, not mockups.';
+  subhead = 'Full-stack developer. From concept to deployment, I create software people actually use.';
 
   @property({ type: String })
-  ctaText = 'Read the ledger ↓';
+  ctaText = 'See the work ↓';
 
   @property({ type: String })
   ctaLink = '#projects';
@@ -163,11 +145,10 @@ export class HeroSection extends LitElement {
 
   render() {
     return html`
-      <div class="kicker">Issack John / shipping ledger</div>
       <h1 class="statement">${this.headline}</h1>
-      
+
       <p class="bio">${this.subhead}</p>
-      
+
       ${this._statsError ? html`
         <div class="error-message">${this._statsError}</div>
       ` : html`
@@ -192,7 +173,7 @@ export class HeroSection extends LitElement {
           </div>
         </div>
       `}
-      
+
       <a href="${this.ctaLink}" class="cta">${this.ctaText}</a>
     `;
   }

@@ -10,31 +10,15 @@ export class ProjectCard extends LitElement {
 
     .card {
       border-bottom: 1px solid var(--border);
-      padding: 1.75rem 0;
+      padding: 1.5rem 0;
       margin: 0 -1rem;
       padding-left: 1rem;
       padding-right: 1rem;
-      transition: background var(--transition), transform var(--transition);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 220px;
-      gap: 1.25rem;
-      align-items: start;
+      transition: background var(--transition);
     }
 
     .card:hover {
       background: var(--faint);
-      transform: translateX(4px);
-    }
-
-    @media (max-width: 760px) {
-      .card {
-        grid-template-columns: 1fr;
-        transform: none;
-      }
-
-      .card:hover {
-        transform: none;
-      }
     }
 
     .card-header {
@@ -48,7 +32,7 @@ export class ProjectCard extends LitElement {
     h3 {
       font-family: var(--font-display);
       font-size: var(--type-headline);
-      font-weight: 500;
+      font-weight: 400;
       font-style: italic;
       margin: 0;
       color: var(--ink);
@@ -66,15 +50,15 @@ export class ProjectCard extends LitElement {
     .description {
       color: var(--gray);
       margin: 0 0 0.75rem 0;
-      max-width: 620px;
+      max-width: 540px;
       line-height: 1.6;
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.65rem;
-      margin-bottom: 0.9rem;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
       font-family: var(--font-mono);
       font-size: var(--type-mono);
       color: var(--gray);
@@ -106,25 +90,15 @@ export class ProjectCard extends LitElement {
       display: block;
       width: 100%;
       max-width: 100%;
-      aspect-ratio: 5 / 3;
-      object-fit: cover;
+      margin-top: 1rem;
       border: 1px solid var(--border);
       opacity: 1;
-      filter: saturate(0.9) contrast(1.04);
-      transition: opacity 0.2s ease, filter var(--transition);
-    }
-
-    .card:hover .card-image {
-      filter: saturate(1.08) contrast(1.08);
+      transition: opacity 0.2s ease;
     }
 
     .card-image.loading {
       opacity: 0;
-      min-height: 132px;
-    }
-
-    .copy {
-      min-width: 0;
+      height: 200px; /* Reserve space while loading */
     }
   `;
 
@@ -152,30 +126,28 @@ export class ProjectCard extends LitElement {
 
     return html`
       <article class="card">
-        <div class="copy">
-          <div class="card-header">
-            <h3>${this.title}</h3>
-            <span class="role">${this.role}</span>
+        <div class="card-header">
+          <h3>${this.title}</h3>
+          <span class="role">${this.role}</span>
+        </div>
+
+        ${this.description ? html`<p class="description">${this.description}</p>` : ''}
+
+        ${this.techStack.length > 0 ? html`
+          <div class="tech-stack">
+            ${this.techStack.map((tech) => html`<span class="tech-tag">${tech}</span>`)}
           </div>
-          
-          ${this.description ? html`<p class="description">${this.description}</p>` : ''}
-          
-          ${this.techStack.length > 0 ? html`
-            <div class="tech-stack">
-              ${this.techStack.map((tech) => html`<span class="tech-tag">${tech}</span>`)}
-            </div>
-          ` : ''}
-          
-          <div class="links">
-            ${this.liveDemoLink ? html`<a href="${this.liveDemoLink}" target="_blank" rel="noopener noreferrer">Live →</a>` : ''}
-            ${this.githubRepoLink ? html`<a href="${this.githubRepoLink}" target="_blank" rel="noopener noreferrer">Source →</a>` : ''}
-          </div>
+        ` : ''}
+
+        <div class="links">
+          ${this.liveDemoLink ? html`<a href="${this.liveDemoLink}" target="_blank" rel="noopener noreferrer">Live →</a>` : ''}
+          ${this.githubRepoLink ? html`<a href="${this.githubRepoLink}" target="_blank" rel="noopener noreferrer">Source →</a>` : ''}
         </div>
 
         ${showImage ? html`
-          <img 
-            src="${this.imageUrl}" 
-            alt="${this.title}" 
+          <img
+            src="${this.imageUrl}"
+            alt="${this.title}"
             class="card-image ${this._imageLoaded ? '' : 'loading'}"
             @load=${this._handleImageLoad}
             @error=${this._handleImageError}
