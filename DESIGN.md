@@ -1,35 +1,30 @@
 ---
-version: beta
+version: alpha
 name: The Shipping Ledger
-description: Editorial portfolio design system for a product engineer's public shipping record — warm paper surfaces, hard evidence rows, serif display typography, monospace proof labels, and restrained orange emphasis.
+description: Editorial portfolio design system for a product engineer's public shipping record — warm paper, black ink, serif proof typography, monospace labels, hard ledger rows, and one restrained orange accent.
 colors:
-  ink: "#111111"
-  paper: "#fbf7ef"
-  gray: "#5d574c"
+  primary: "#111111"
+  secondary: "#5d574c"
+  tertiary: "#c13a17"
+  neutral: "#fbf7ef"
   faint: "#efe7d8"
   border: "#d7cbb7"
-  accent: "#d6451f"
-  dark-ink: "#f3ead8"
-  dark-paper: "#080807"
-  dark-gray: "#aaa08e"
-  dark-faint: "#171410"
-  dark-border: "#30291f"
-  dark-accent: "#ff6a38"
+  inverse: "#ffffff"
+  dark-primary: "#f3ead8"
+  dark-neutral: "#080807"
 typography:
   display-lg:
     fontFamily: Newsreader, "Iowan Old Style", Georgia, serif
-    fontSize: clamp(3rem, 9vw, 6.75rem)
+    fontSize: 6.75rem
     fontWeight: 500
     lineHeight: 0.92
     letterSpacing: "-0.055em"
-    fontStyle: italic
   display-md:
     fontFamily: Newsreader, "Iowan Old Style", Georgia, serif
-    fontSize: clamp(1.55rem, 4vw, 2.6rem)
+    fontSize: 2.6rem
     fontWeight: 500
     lineHeight: 1.2
     letterSpacing: "-0.02em"
-    fontStyle: italic
   body-md:
     fontFamily: IBM Plex Sans, -apple-system, system-ui, sans-serif
     fontSize: 1.0625rem
@@ -42,15 +37,16 @@ typography:
     fontWeight: 500
     lineHeight: 1.45
     letterSpacing: 0px
-  mono-label:
+  label-caps:
     fontFamily: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace
     fontSize: 0.8125rem
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: "0.1em"
-    textTransform: uppercase
 rounded:
-  none: 0px
+  sm: 0px
+  md: 0px
+  lg: 0px
 spacing:
   xs: 4px
   sm: 8px
@@ -59,59 +55,71 @@ spacing:
   xl: 32px
   2xl: 48px
   3xl: 64px
-  max-width: 52rem
-motion:
-  duration: 100ms
-  easing: ease
 components:
   page:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.primary}"
     typography: "{typography.body-md}"
-    maxWidth: "{spacing.max-width}"
-    padding: 0 32px
+    padding: 32px
+  page-dark:
+    backgroundColor: "{colors.dark-neutral}"
+    textColor: "{colors.dark-primary}"
+    typography: "{typography.body-md}"
+    padding: 32px
   hero:
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.primary}"
     typography: "{typography.display-lg}"
-    borderColor: "{colors.border}"
-    paddingTop: 14vh
-    paddingBottom: 8vh
-    purpose: "State the portfolio thesis as a proof record, not a job-seeker slogan."
+    padding: 64px 0
   evidence-label:
-    typography: "{typography.mono-label}"
-    textColor: "{colors.gray}"
+    textColor: "{colors.secondary}"
+    typography: "{typography.label-caps}"
   evidence-value:
+    textColor: "{colors.primary}"
     typography: "{typography.display-md}"
-    textColor: "{colors.ink}"
   project-row:
-    backgroundColor: transparent
-    hoverBackgroundColor: "{colors.faint}"
-    borderColor: "{colors.border}"
-    rounded: "{rounded.none}"
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.sm}"
     padding: 28px 16px
-    layout: "copy-first row with optional proof thumbnail"
+  project-row-hover:
+    backgroundColor: "{colors.faint}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.sm}"
+    padding: 28px 16px
+  divider:
+    backgroundColor: "{colors.border}"
+    height: 1px
   proof-thumbnail:
-    borderColor: "{colors.border}"
-    rounded: "{rounded.none}"
-    aspectRatio: "5 / 3"
+    backgroundColor: "{colors.dark-neutral}"
+    textColor: "{colors.dark-primary}"
+    rounded: "{rounded.sm}"
+    size: 220px
   button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    hoverBackgroundColor: "{colors.accent}"
-    rounded: "{rounded.none}"
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.neutral}"
+    rounded: "{rounded.sm}"
+    padding: 13px 16px
+  button-primary-hover:
+    backgroundColor: "{colors.tertiary}"
+    textColor: "{colors.inverse}"
+    rounded: "{rounded.sm}"
     padding: 13px 16px
   timeline-item:
-    borderColor: "{colors.border}"
-    hoverBackgroundColor: "{colors.faint}"
-    gridTemplateColumns: 100px 1fr
-  link:
-    textColor: "{colors.ink}"
-    textDecoration: underline
-    textUnderlineOffset: 3px
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.sm}"
+    padding: 16px
+  timeline-item-hover:
+    backgroundColor: "{colors.faint}"
+    textColor: "{colors.primary}"
+    rounded: "{rounded.sm}"
+    padding: 16px
 ---
 
 ## Overview
 
-The Shipping Ledger is a public portfolio language for showing shipped product-engineering work. It should feel like an evidence file: live systems, release history, and concise project explanations presented with editorial confidence.
+The Shipping Ledger is a portfolio system for public proof of shipped product-engineering work. It should read like an evidence file: live URLs, shipped systems, release history, and short explanations of what each project does.
 
 This is not a generic personal site, SaaS landing page, or recruiter brochure. The first impression should be: this person ships real software and keeps receipts.
 
@@ -119,12 +127,12 @@ This is not a generic personal site, SaaS landing page, or recruiter brochure. T
 
 The palette is warm, low-glare, and proof-oriented.
 
-- **Ink (`#111111`):** Primary text, hard dividers, filled CTAs, and proof emphasis.
-- **Paper (`#fbf7ef`):** Page canvas. Warm enough to avoid sterile white, neutral enough for project imagery.
-- **Gray (`#5d574c`):** Descriptions, metadata, and secondary labels.
-- **Faint (`#efe7d8`):** Row hover states and quiet surface shifts.
-- **Border (`#d7cbb7`):** Hairline structure for ledger rows, thumbnails, and section separation.
-- **Accent (`#d6451f`):** Sparse action/emphasis color. Use for the hero kicker and CTA hover; do not make it decorative chrome.
+- **Primary / Ink (#111111):** Primary text, hard dividers, filled CTAs, and evidence emphasis.
+- **Neutral / Paper (#fbf7ef):** Page canvas. Warm enough to avoid sterile white, neutral enough for project imagery.
+- **Secondary / Gray (#5d574c):** Descriptions, metadata, and secondary labels.
+- **Faint (#efe7d8):** Row hover states and quiet surface shifts.
+- **Border (#d7cbb7):** Hairline structure for ledger rows, thumbnails, and section separation.
+- **Tertiary / Accent (#c13a17):** Sparse action and emphasis color. Use for the hero kicker and CTA hover; do not make it decorative chrome.
 
 Dark mode keeps the same hierarchy with inverted warm neutrals and brighter orange. Avoid saturated blue/purple gradients, glass effects, or cold gray SaaS palettes.
 
@@ -132,7 +140,7 @@ Dark mode keeps the same hierarchy with inverted warm neutrals and brighter oran
 
 Typography carries the identity.
 
-- **Newsreader** is the display voice. Use it for the hero, section headings, project titles, and evidence values. Italic display type gives the portfolio an editorial, authored feel.
+- **Newsreader** is the display voice. Use it for the hero, section headings, project titles, and evidence values. Italic usage in CSS gives the portfolio an editorial, authored feel.
 - **IBM Plex Sans** is the body voice. Use it for project descriptions, contact copy, and readable supporting text.
 - **System monospace** is the proof voice. Use it for dates, labels, tech stacks, metric labels, and release metadata.
 
@@ -142,13 +150,21 @@ Hierarchy should come from type scale, weight, spacing, and dividers before colo
 
 The site is a ledger, not a card wall.
 
-- Keep content constrained to `52rem` so rows read like a high-signal document.
-- Use full-width row dividers for projects and timeline items.
-- Project rows prioritize copy first and proof thumbnails second.
-- The first viewport should be one clear composition: identity kicker, big thesis, one sentence, metrics, CTA.
-- Mobile layout collapses rows into a single column; thumbnails should never crowd the copy.
+Use a narrow editorial measure around 52rem so rows read like a high-signal document. Project rows prioritize copy first and proof thumbnails second. The first viewport should be one clear composition: identity kicker, big thesis, one sentence, metrics, and one CTA.
 
-The subtle background grid is allowed because it reinforces a systems/evidence feel, but it must stay quiet. If the grid competes with text, reduce it.
+Mobile layout collapses rows into a single column; thumbnails should never crowd the copy. The subtle background grid is allowed because it reinforces a systems/evidence feel, but it must stay quiet. If the grid competes with text, reduce it.
+
+## Elevation & Depth
+
+Depth is nearly flat. Use dividers, warm surfaces, row hover color, and typography before adding shadows.
+
+Project rows should not become floating cards. Proof thumbnails may use contrast and internal graphic structure, but the page shell should remain editorial and calm. Overlays are not part of the current site; if added later, use minimal shadow only for separation.
+
+## Shapes
+
+The dominant shape language is sharp and document-like. Radius tokens intentionally resolve to `0px`.
+
+Use hard edges for buttons, thumbnails, project rows, and timeline rows. Do not add rounded SaaS cards unless the design direction is explicitly changed.
 
 ## Components
 
@@ -162,17 +178,9 @@ Metrics should be factual and easy to audit. Current examples: products shipped,
 
 ### Project rows
 
-Project rows are the core artifact. Each row should include:
+Project rows are the core artifact. Each row should include title, role, concise public-safe description, tech stack, live URL, optional source URL, and a proof thumbnail.
 
-- title
-- role
-- concise public-safe description
-- tech stack
-- live URL
-- optional source URL
-- proof thumbnail
-
-Rows may shift slightly on hover for scanability. Do not add shadows, rounded cards, or nested card shells.
+Rows may shift slightly on hover for scanability. Do not add shadows, rounded card shells, or nested card layouts.
 
 ### Proof thumbnails
 
@@ -182,29 +190,8 @@ Use real screenshots when available. For private systems or work without a suita
 
 The ship log is reverse chronological and should read like release evidence. Include only meaningful releases or milestones. Keep descriptions short and outcome-oriented.
 
-## Content rules
-
-Use concrete nouns and shipped outcomes:
-
-- Good: "serverless oncology teaching simulator", "private field-ops CRM", "Chrome extension and backend pipeline".
-- Bad: "innovative solution", "cutting-edge platform", "revolutionary experience".
-
-Private/internal systems may be represented, but never expose customer PII, credentials, private dashboards, internal API URLs, or operational secrets.
-
 ## Do's and Don'ts
 
-Do keep the page editorial, restrained, and evidence-first. Do lead with the newest shipped work. Do preserve older projects unless explicitly asked to remove them.
+Do keep the page editorial, restrained, and evidence-first. Do lead with the newest shipped work. Do preserve older projects unless explicitly asked to remove them. Do update both source data and generated `docs/` output in the same PR.
 
-Do not replace the project list when adding new work. Append/reprioritize instead. Do not introduce generic AI portfolio tropes: purple gradients, glassmorphism, 3D icons, fake analytics dashboards, vague claims, or overanimated hero sections.
-
-## Agent handoff notes
-
-When modifying the design, update this file first or in the same PR. Then run:
-
-```bash
-npm run verify
-npm run build
-npm run verify
-```
-
-Commit generated `docs/` output with source changes because GitHub Pages serves from `docs/`.
+Do not replace the project list when adding new work. Do not introduce generic AI portfolio tropes: purple gradients, glassmorphism, 3D icons, fake analytics dashboards, vague claims, or overanimated hero sections. Do not expose private customer data, credentials, private dashboards, internal API URLs, or operational secrets.
