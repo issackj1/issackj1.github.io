@@ -1,10 +1,13 @@
 {
   "name": "lit-portfolio",
   "version": "1.0.0",
-  "description": "A Lit-powered portfolio on GitHub Pages",
+  "description": "A Lit-powered shipping ledger on GitHub Pages",
   "main": "src/index.html",
   "scripts": {
     "build": "rimraf docs && esbuild src/index.ts --bundle --minify --outfile=docs/bundle.js --format=esm && copyfiles -u 1 public/**/* docs && copyfiles -f src/index.html docs && copyfiles -u 1 data/**/* docs/data && copyfiles -u 1 assets/**/* docs/assets && replace-in-file \"./index.ts\" \"./bundle.js\" docs/index.html",
+    "check": "tsc --noEmit",
+    "content:check": "node scripts/verify-agent.mjs",
+    "verify": "npm run check && npm run content:check && git diff --check",
     "serve": "npx serve docs",
     "dev": "wds",
     "deploy": "npm run build && gh-pages -d docs"

@@ -23,6 +23,14 @@
     "type": "release"
   },
   {
+    "id": "exterior-crm-ops-system",
+    "date": "2026-04-28",
+    "title": "Exterior Completion CRM ops upgrades shipped",
+    "description": "Hardened a private field-ops CRM with lead sync, cross-source dedupe, dispatch fixes, timezone-safe analytics, and auth improvements.",
+    "link": "https://exteriorcompletion.ca/",
+    "type": "release"
+  },
+  {
     "id": "oncology-prep-serverless",
     "date": "2026-04-25",
     "title": "Oncology Prep went fully serverless",
@@ -36,14 +44,6 @@
     "title": "JamesPeralta.com AI tutor wave shipped",
     "description": "Advanced the Peralta 75 learning platform with AI tutor work, product polish, bug-bash fixes, and recruiter-facing improvements.",
     "link": "https://jamesperalta.com/",
-    "type": "release"
-  },
-  {
-    "id": "exterior-crm-ops-system",
-    "date": "2026-04-28",
-    "title": "Exterior Completion CRM ops upgrades shipped",
-    "description": "Hardened a private field-ops CRM with lead sync, cross-source dedupe, dispatch fixes, timezone-safe analytics, and auth improvements.",
-    "link": "https://exteriorcompletion.ca/",
     "type": "release"
   },
   {

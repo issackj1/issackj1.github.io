@@ -1,66 +1,94 @@
-# Lit-Powered Portfolio on GitHub Pages
+# Issack John — Shipping Ledger
 
-This is a clean, minimal, and impactful GitHub Pages website built with Lit to showcase shipped products and demonstrate development velocity.
+A Lit-powered portfolio on GitHub Pages for shipped product-engineering work: AI tutors, clinical simulations, stream tools, CRM systems, extensions, workers, and public software.
 
-## Features
+The site is intentionally simple: source files build into the committed `docs/` directory, and GitHub Pages serves from there.
 
-- **Hero Section:** Quick pitch with an animated metric counter for shipped products.
-- **Project Grid:** Scroll-snapped project cards with links to live demos & GitHub repos.
-- **Shipping Timeline:** Reverse-chronological feed of releases and pull requests.
-- **About & Contact:** Section for credibility and contact information.
-- **Footer:** Includes a light/dark theme switcher and legal text.
-- **Performance Optimized:** Aims for <10 kB gzipped JS, lazy-loaded images, and pre-render friendly content.
-- **CI/CD:** Auto-deploys to GitHub Pages via GitHub Actions on pushes to the `main` branch.
+## Stack
 
-## Tech Stack
-
-- [Lit](https://lit.dev/) for web components
-- [esbuild](https://esbuild.github.io/) for bundling
+- [Lit](https://lit.dev/) web components
 - TypeScript
-- GitHub Pages for hosting
-- GitHub Actions for CI/CD
+- esbuild
+- GitHub Pages from `docs/`
+- GitHub Actions CI for PR verification
 
-## Quick Start
+## Repo map
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/yourusername/your-repo-name.git
-    cd your-repo-name
-    ```
+```text
+src/index.html          Global CSS tokens, metadata, document shell
+src/index.ts            Component registration entrypoint
+src/components/         Lit components
+data/projects.json      Project list
+data/releases.json      Ship log
+data/stats.json         Hero metrics
+assets/                 Source/static media
+public/                 Static files copied into docs/
+docs/                   Generated GitHub Pages output; commit after build
+scripts/verify-agent.mjs Repo-specific content/readiness checks
+AGENTS.md               Instructions for autonomous coding agents
+```
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+## Local development
 
-3.  **Build the project:**
-    ```bash
-    npm run build
-    ```
-    This will generate the static site in the `/dist` folder.
+```bash
+npm ci
+npm run dev
+```
 
-4.  **Preview locally:**
-    ```bash
-    npm run serve
-    ```
-    Then open your browser to the URL provided by `npx serve` (usually `http://localhost:3000`).
+## Verification
 
-## Development
+Run this before every PR handoff:
 
--   Component source files are in `src/components/`.
--   The main HTML entry point is `src/index.html`.
--   The main TypeScript entry point that imports all components is `src/index.ts`.
--   Timeline data is in `data/releases.json`.
+```bash
+npm run verify
+npm run build
+```
 
-## GitHub Actions Workflow
+What this checks:
 
-The workflow in `.github/workflows/deploy.yml` will:
-1.  Checkout the code.
-2.  Set up Node.js.
-3.  Install dependencies (`npm ci`).
-4.  Build the site (`npm run build`).
-5.  Configure GitHub Pages.
-6.  Upload the build artifact (from `./dist`).
-7.  Deploy to GitHub Pages.
+- TypeScript compiles (`tsc --noEmit`)
+- project/release/stats JSON is valid and portfolio-safe
+- referenced `/assets/*` files exist
+- release dates are newest-first
+- whitespace/diff checks pass
+- `docs/` can be regenerated cleanly
 
-This happens automatically on every push to the `main` branch.
+Preview the generated site:
+
+```bash
+npm run serve
+```
+
+## Updating content
+
+Most portfolio updates are data-only:
+
+- Add shipped work to `data/projects.json`
+- Add milestones/releases to `data/releases.json`
+- Update metrics in `data/stats.json`
+- Add thumbnails/media to `assets/`
+- Run `npm run build` and commit the updated `docs/` output
+
+Keep public copy specific but safe. Do not expose private customer data, internal credentials, private dashboards, or non-public URLs.
+
+## Deployment
+
+GitHub Pages serves from `docs/` on `main`. Normal flow:
+
+1. Create a branch.
+2. Make source/data/assets changes.
+3. Run `npm run verify && npm run build`.
+4. Commit both source and generated `docs/` changes.
+5. Open a PR.
+6. Merge to `main` after CI passes.
+
+Do **not** push directly to `main`. Do **not** run `npm run deploy` unless explicitly requested.
+
+## Agent readiness
+
+This repo is prepared for autonomous coding agents. Start with `AGENTS.md`, then follow the standard workflow above. Every agent handoff should include:
+
+- summary of source/content changes
+- verification commands and results
+- whether `docs/` was regenerated
+- any known risks or follow-up work

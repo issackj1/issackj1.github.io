@@ -1,95 +1,72 @@
-# The Proof — Design System
+# The Shipping Ledger — Design System
 
-A portfolio designed like evidence. No decoration. Pure confidence.
-
----
+A portfolio designed like a public evidence file. It should feel editorial, hard-edged, and deployed — not ornamental.
 
 ## Philosophy
 
-This design competes by **subtracting**, not adding. Most AI-generated designs pile on effects (gradients, blurs, animations, rounded corners). The Proof does the opposite: typography does all the work.
+This site competes by showing proof: live URLs, shipped systems, concrete release history, and concise explanations of what each system does.
 
-**Core principle:** If an element doesn't serve the content, remove it.
+**Core principle:** the work is the ornament. Visual treatment should make the evidence easier to scan, not distract from it.
 
----
+## Visual thesis
+
+Editorial proof with industrial restraint: warm paper, black ink, hard dividers, serif headlines, monospace labels, and proof-style project imagery.
 
 ## Typography
 
-| Purpose | Font | Example |
-|---------|------|---------|
-| Headlines/Statements | `--font-display` (Times New Roman, serif, italic) | Project titles, section headers |
-| Body | `--font-body` (Inter, sans-serif) | Descriptions, paragraphs |
-| Data/Labels | `--font-mono` (system monospace) | Dates, tech stacks, metrics |
+| Purpose | Font | Usage |
+| --- | --- | --- |
+| Display | `Newsreader` | Hero headline, project titles, section headings |
+| Body | `IBM Plex Sans` | Descriptions and paragraphs |
+| Data/labels | system monospace | Dates, tech stacks, metrics, labels |
 
-Serif italic conveys authority. Monospace conveys precision. Sans-serif stays out of the way.
-
----
-
-## Color Tokens
+## Color tokens
 
 ```css
---ink: #000000;     /* Primary text (white in dark mode) */
---paper: #FFFFFF;   /* Background (near-black in dark mode) */
---gray: #555555;    /* Secondary text */
---faint: #F0F0F0;   /* Hover states, subtle backgrounds */
---border: #E0E0E0;  /* Dividers */
+--ink: #111111;
+--paper: #fbf7ef;
+--gray: #5d574c;
+--faint: #efe7d8;
+--border: #d7cbb7;
+--accent: #d6451f;
 ```
 
-**Rule:** No accent colors. The work is the accent.
+Dark mode keeps the same system with inverted warmth and a brighter accent.
 
----
+## Layout rules
 
-## What's Not Allowed
+- Keep the narrow editorial measure: `--max-width: 52rem`.
+- Structure content as a ledger/list, not a dashboard.
+- Use dividers and spacing before boxes and shadows.
+- Project rows may include a thumbnail, but copy stays primary.
+- `docs/` is generated output; make design changes in `src/` first.
 
-| ❌ Avoid | ✅ Use Instead |
-|----------|----------------|
-| Rounded corners | Sharp edges (`border-radius: 0`) |
-| Shadows | Borders (`1px solid var(--border)`) |
-| Gradients | Solid colors |
-| Scale transforms on hover | Background tint only |
-| Animated blobs/orbs | Nothing |
-| Icon-heavy interfaces | Text labels |
-| Card-based layouts | List-based layouts |
+## Allowed patterns
 
----
+- Hard 1px borders.
+- Serif italic headlines.
+- Monospace evidence labels.
+- Warm neutral grid texture.
+- SVG proof thumbnails for projects without public screenshots.
+- Small hover movement only when it improves scanability.
 
-## Interaction Patterns
+## Avoid
 
-**Hover feedback:** Background changes to `--faint`. No transforms, no shadows.
+| Avoid | Use instead |
+| --- | --- |
+| Purple gradients / generic SaaS glow | Warm editorial palette + one orange accent |
+| Glass cards / rounded blob UI | Sharp dividers and hard edges |
+| Fake dashboards | Real project descriptions and links |
+| Icon-heavy sections | Text labels and hierarchy |
+| Aspirational claims | Shipped, verifiable outcomes |
 
-```css
-.item:hover {
-  background: var(--faint);
-}
-```
+## Adding new projects
 
-**Links:** Underlined with `text-decoration`. Thickness increases on hover.
+Ask:
 
-```css
-a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-a:hover {
-  text-decoration-thickness: 2px;
-}
-```
+1. Is there a live public URL or explainable shipped artifact?
+2. Can the description be public without leaking private details?
+3. Does the thumbnail point to a real asset under `/assets/`?
+4. Does the project belong above older work in priority?
 
----
-
-## Layout
-
-- **Max width:** 52rem (narrower = more intentional)
-- **Spacing:** Tight vertical rhythm; confidence doesn't need breathing room
-- **Structure:** Stacked lists, not grids
-
----
-
-## When Adding Features
-
-Before adding anything, ask:
-
-1. Does this element serve the content, or is it decoration?
-2. Can I communicate this with typography instead of color/icons?
-3. Would removing this make the design weaker or stronger?
-
-If in doubt, leave it out.
+Then update `data/projects.json`, `data/releases.json` if applicable, `data/stats.json`, run `npm run verify`, and rebuild `docs/`.
