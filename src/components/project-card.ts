@@ -10,15 +10,31 @@ export class ProjectCard extends LitElement {
 
     .card {
       border-bottom: 1px solid var(--border);
-      padding: 1.5rem 0;
+      padding: 1.75rem 0;
       margin: 0 -1rem;
       padding-left: 1rem;
       padding-right: 1rem;
-      transition: background var(--transition);
+      transition: background var(--transition), transform var(--transition);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 1.25rem;
+      align-items: start;
     }
 
     .card:hover {
       background: var(--faint);
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 760px) {
+      .card {
+        grid-template-columns: 1fr;
+        transform: none;
+      }
+
+      .card:hover {
+        transform: none;
+      }
     }
 
     .card-header {
@@ -32,7 +48,7 @@ export class ProjectCard extends LitElement {
     h3 {
       font-family: var(--font-display);
       font-size: var(--type-headline);
-      font-weight: 400;
+      font-weight: 500;
       font-style: italic;
       margin: 0;
       color: var(--ink);
@@ -50,15 +66,15 @@ export class ProjectCard extends LitElement {
     .description {
       color: var(--gray);
       margin: 0 0 0.75rem 0;
-      max-width: 540px;
+      max-width: 620px;
       line-height: 1.6;
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
+      gap: 0.65rem;
+      margin-bottom: 0.9rem;
       font-family: var(--font-mono);
       font-size: var(--type-mono);
       color: var(--gray);
@@ -90,15 +106,25 @@ export class ProjectCard extends LitElement {
       display: block;
       width: 100%;
       max-width: 100%;
-      margin-top: 1rem;
+      aspect-ratio: 5 / 3;
+      object-fit: cover;
       border: 1px solid var(--border);
       opacity: 1;
-      transition: opacity 0.2s ease;
+      filter: saturate(0.9) contrast(1.04);
+      transition: opacity 0.2s ease, filter var(--transition);
+    }
+
+    .card:hover .card-image {
+      filter: saturate(1.08) contrast(1.08);
     }
 
     .card-image.loading {
       opacity: 0;
-      height: 200px; /* Reserve space while loading */
+      min-height: 132px;
+    }
+
+    .copy {
+      min-width: 0;
     }
   `;
 
@@ -126,22 +152,24 @@ export class ProjectCard extends LitElement {
 
     return html`
       <article class="card">
-        <div class="card-header">
-          <h3>${this.title}</h3>
-          <span class="role">${this.role}</span>
-        </div>
-        
-        ${this.description ? html`<p class="description">${this.description}</p>` : ''}
-        
-        ${this.techStack.length > 0 ? html`
-          <div class="tech-stack">
-            ${this.techStack.map((tech) => html`<span class="tech-tag">${tech}</span>`)}
+        <div class="copy">
+          <div class="card-header">
+            <h3>${this.title}</h3>
+            <span class="role">${this.role}</span>
           </div>
-        ` : ''}
-        
-        <div class="links">
-          ${this.liveDemoLink ? html`<a href="${this.liveDemoLink}" target="_blank" rel="noopener noreferrer">Live →</a>` : ''}
-          ${this.githubRepoLink ? html`<a href="${this.githubRepoLink}" target="_blank" rel="noopener noreferrer">Source →</a>` : ''}
+          
+          ${this.description ? html`<p class="description">${this.description}</p>` : ''}
+          
+          ${this.techStack.length > 0 ? html`
+            <div class="tech-stack">
+              ${this.techStack.map((tech) => html`<span class="tech-tag">${tech}</span>`)}
+            </div>
+          ` : ''}
+          
+          <div class="links">
+            ${this.liveDemoLink ? html`<a href="${this.liveDemoLink}" target="_blank" rel="noopener noreferrer">Live →</a>` : ''}
+            ${this.githubRepoLink ? html`<a href="${this.githubRepoLink}" target="_blank" rel="noopener noreferrer">Source →</a>` : ''}
+          </div>
         </div>
 
         ${showImage ? html`

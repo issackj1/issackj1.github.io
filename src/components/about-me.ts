@@ -51,7 +51,7 @@ export class AboutMe extends LitElement {
   `;
 
   @property({ type: String }) aboutTitle = 'Contact';
-  @property({ type: String }) bio = "Available for new opportunities. Let's build something.";
+  @property({ type: String }) bio = "I like work that ends in a live URL, a cleaner workflow, or a measurable business result. If that is the kind of software you need, reach out.";
   @property({ type: String }) linkedinUrl = 'https://www.linkedin.com/in/issack-john/';
   @property({ type: String }) githubUrl = 'https://github.com/issackj1';
 

@@ -1,16 +1,63 @@
 [
   {
+    "id": "gpt55-agent-stack-default",
+    "date": "2026-05-03",
+    "title": "Agent stack moved to GPT-5.5",
+    "description": "Updated the chat-facing OpenClaw agents to use GitHub Copilot GPT-5.5 by default, with Opus retained as fallback capacity.",
+    "type": "milestone"
+  },
+  {
+    "id": "pulse-stream-overlays-launch",
+    "date": "2026-05-02",
+    "title": "Pulse stream overlay tools shipped",
+    "description": "Launched a Cloudflare Pages site for free streamer overlays with heartbeat-based health monitoring.",
+    "link": "https://pulse-stream-668.pages.dev/",
+    "type": "release"
+  },
+  {
+    "id": "clanka-dsa-launch",
+    "date": "2026-05-02",
+    "title": "Clanka DSA study site shipped",
+    "description": "Published a fast static DSA learning site generated from structured markdown notes.",
+    "link": "https://clanka-dsa.pages.dev/",
+    "type": "release"
+  },
+  {
+    "id": "exterior-crm-ops-system",
+    "date": "2026-04-28",
+    "title": "Exterior Completion CRM ops upgrades shipped",
+    "description": "Hardened a private field-ops CRM with lead sync, cross-source dedupe, dispatch fixes, timezone-safe analytics, and auth improvements.",
+    "link": "https://exteriorcompletion.ca/",
+    "type": "release"
+  },
+  {
+    "id": "oncology-prep-serverless",
+    "date": "2026-04-25",
+    "title": "Oncology Prep went fully serverless",
+    "description": "Moved the simulator to Cloudflare Pages Functions with Gemini-backed cases, worksheets, debriefs, history, and feedback capture.",
+    "link": "https://oncology-prep.pages.dev/",
+    "type": "release"
+  },
+  {
+    "id": "jamesperalta-ai-tutor-wave",
+    "date": "2026-04-24",
+    "title": "JamesPeralta.com AI tutor wave shipped",
+    "description": "Advanced the Peralta 75 learning platform with AI tutor work, product polish, bug-bash fixes, and recruiter-facing improvements.",
+    "link": "https://jamesperalta.com/",
+    "type": "release"
+  },
+  {
     "id": "portfolio-redesign-the-proof",
     "date": "2026-01-03",
-    "title": "Portfolio Redesign: \"The Proof\"",
-    "description": "Launched a comprehensive redesign based on evidence and typography. No decoration, just the work.",
+    "title": "Portfolio Redesign: The Proof",
+    "description": "Launched a redesign based on evidence and typography. No decoration, just the work.",
     "link": "https://issackj1.github.io",
     "type": "release"
   },
   {
     "id": "ufc-calendar-landing-page-redesign",
     "date": "2025-12-17",
-    "title": "UFC Calendar Landing Page Redesign Shipped",
+    "title": "UFC Calendar landing page redesign shipped",
     "description": "Shipped a major redesign of the UFC Calendar landing page with improved UI/UX and modern design patterns.",
     "link": "https://ufccalendar.tech/",
     "type": "release"
@@ -18,30 +65,31 @@
   {
     "id": "promptcost-proxy-worker-launch",
     "date": "2025-05-17",
-    "title": "PromptCost Proxy Worker Launched",
-    "description": "Launched the PromptCost Proxy Worker, a serverless Cloudflare Worker for OpenAI API logging, cost tracking, and authentication.",
+    "title": "PromptCost Proxy Worker launched",
+    "description": "Launched a serverless Cloudflare Worker for OpenAI API logging, cost tracking, and centralized authentication.",
     "link": "https://promptcost-proxy.johnissack997.workers.dev/",
     "type": "release"
   },
   {
     "id": "portfolio-v1-release",
     "date": "2025-05-07",
-    "title": "Portfolio v1 Launch",
-    "description": "Initial release of my GitHub-Pages portfolio built with Lit, showcasing shipped projects and a live shipping timeline.",
+    "title": "Portfolio v1 launched",
+    "description": "Initial release of the GitHub Pages portfolio built with Lit, showcasing shipped projects and a live shipping timeline.",
+    "link": "https://issackj1.github.io",
     "type": "release"
   },
   {
     "id": "my-first-worker-launch",
     "date": "2025-04-29",
-    "title": "Automated Twitter Content Poster Launched",
-    "description": "Launched the Cloudflare Worker for automated Twitter content posting, featuring AI-generated text and images.",
-    "link": "",
+    "title": "Automated X content poster launched",
+    "description": "Launched the Cloudflare Worker for automated X content posting with AI-generated text and images.",
+    "link": "https://x.com/MemeGeniusAI",
     "type": "release"
   },
   {
     "id": "meme-genius-ai-website-launch",
     "date": "2024-01-27",
-    "title": "Meme Genius AI Website Launched",
+    "title": "Meme Genius AI website launched",
     "description": "Launched the Meme Genius AI website, featuring a gallery of AI-generated memes.",
     "link": "https://meme-genius-ai.vercel.app/",
     "type": "release"
@@ -49,7 +97,7 @@
   {
     "id": "ufc-calendar-landing-page-launch",
     "date": "2021-05-18",
-    "title": "UFC Calendar Landing Page Launched",
+    "title": "UFC Calendar landing page launched",
     "description": "Launched the official landing page for the UFC Calendar project at ufccalendar.tech.",
     "link": "https://ufccalendar.tech/",
     "type": "release"
@@ -57,7 +105,7 @@
   {
     "id": "ufc-calendar-extension-launch",
     "date": "2021-05-10",
-    "title": "UFC Calendar Extension Launched",
+    "title": "UFC Calendar extension launched",
     "description": "Launched the UFC Calendar Chrome Extension, providing live updates and event details for UFC fans.",
     "link": "https://chromewebstore.google.com/detail/pdagojbjdekpdicaefbiolkpgobiaoch",
     "type": "release"

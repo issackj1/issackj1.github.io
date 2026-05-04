@@ -1,60 +1,75 @@
 [
   {
-    "title": "PromptCost Proxy Worker",
-    "role": "Design & Full-stack Dev",
+    "title": "JamesPeralta.com / Peralta 75",
+    "role": "Product Engineering",
     "techStack": [
-      "Cloudflare Workers",
-      "TypeScript",
-      "OpenAI API",
-      "Cloudflare KV"
-    ],
-    "imageUrl": "/assets/promptcost-proxy-worker-thumb.webp",
-    "description": "A robust, serverless Cloudflare Worker designed to act as an intelligent and secure gateway for applications interacting with the OpenAI API. It provides comprehensive logging, cost tracking, and centralized authentication for all LLM requests.",
-    "liveDemoLink": "https://promptcost-proxy.johnissack997.workers.dev/",
-    "githubRepoLink": ""
-  },
-  {
-    "title": "Personal Portfolio",
-    "role": "Design & Full-stack Dev",
-    "techStack": [
-      "Lit",
-      "TypeScript",
-      "GitHub Pages",
-      "ESBuild",
-      "GitHub Actions",
-      "CSS"
-    ],
-    "imageUrl": "/assets/portfolio-thumb.png",
-    "liveDemoLink": "https://issackj1.github.io",
-    "githubRepoLink": "https://github.com/issackj1/issackj1.github.io"
-  },
-  {
-    "title": "Meme Genius AI",
-    "role": "Design & Full-stack Dev",
-    "techStack": [
-      "Vercel",
       "Next.js",
       "TypeScript",
-      "CSS"
+      "AI Tutor",
+      "Supabase",
+      "Vercel"
     ],
-    "imageUrl": "/assets/meme-genius-ai-thumb.webp",
-    "liveDemoLink": "https://meme-genius-ai.vercel.app/",
+    "imageUrl": "/assets/jamesperalta-proof.svg",
+    "description": "A DSA and interview-prep learning platform with the Peralta 75 curriculum, AI tutor surfaces, recruiter-facing polish, and a steady shipping cadence across product, UX, and infrastructure.",
+    "liveDemoLink": "https://jamesperalta.com/",
     "githubRepoLink": ""
   },
   {
-    "title": "Meme Genius AI - Automated X Content Poster",
-    "role": "Design & Full-stack Dev",
+    "title": "Oncology Prep",
+    "role": "AI Product Engineering",
     "techStack": [
-      "TypeScript",
-      "Cloudflare Workers",
-      "X API",
-      "OpenAI API",
-      "Cloudflare KV",
-      "Wrangler",
-      "Vitest"
+      "Cloudflare Pages",
+      "Gemini",
+      "Pages Functions",
+      "Clinical Simulation",
+      "TypeScript"
     ],
-    "imageUrl": "/assets/meme-genius-ai-x-thumb.webp",
-    "liveDemoLink": "https://x.com/MemeGeniusAI",
+    "imageUrl": "/assets/oncology-prep-proof.svg",
+    "description": "A serverless oncology teaching simulator for new-admit and follow-up cases, with worksheets, debriefs, session history, feedback capture, and voice-assisted study flows.",
+    "liveDemoLink": "https://oncology-prep.pages.dev/",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "Pulse Stream Overlay Tools",
+    "role": "Founder / Builder",
+    "techStack": [
+      "Cloudflare Pages",
+      "Overlay UX",
+      "Heartbeat Monitoring",
+      "TypeScript"
+    ],
+    "imageUrl": "/assets/pulse-proof.svg",
+    "description": "Free stream overlay tools with simple browser-source setup, live heartbeat health, and a bias toward practical creator workflows instead of heavyweight dashboards.",
+    "liveDemoLink": "https://pulse-stream-668.pages.dev/",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "Clanka DSA",
+    "role": "Learning Systems",
+    "techStack": [
+      "Markdown Pipeline",
+      "Static Site",
+      "Cloudflare Pages",
+      "JavaScript"
+    ],
+    "imageUrl": "/assets/clanka-dsa-proof.svg",
+    "description": "A lightweight DSA study system that turns structured notes into a fast static site for focused interview practice and repeatable learning loops.",
+    "liveDemoLink": "https://clanka-dsa.pages.dev/",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "Exterior Completion Ops CRM",
+    "role": "Private CRM Engineering",
+    "techStack": [
+      "Cloudflare Workers",
+      "D1",
+      "Lead Sync",
+      "Dispatch UX",
+      "Role-based Access"
+    ],
+    "imageUrl": "/assets/exterior-crm-proof.svg",
+    "description": "A private field-ops CRM for an exterior contractor: lead intake, deduplication, dispatch boards, analytics, auth hardening, and AI-generated daily business insights.",
+    "liveDemoLink": "https://exteriorcompletion.ca/",
     "githubRepoLink": ""
   },
   {
@@ -73,6 +88,7 @@
       "Docker"
     ],
     "imageUrl": "/assets/ufc-extension-thumb.webp",
+    "description": "A Chrome extension and backend pipeline for UFC event schedules, live updates, reminders, Discord notifications, and fan-friendly calendar access.",
     "liveDemoLink": "https://chromewebstore.google.com/detail/pdagojbjdekpdicaefbiolkpgobiaoch",
     "githubRepoLink": ""
   },
@@ -85,7 +101,69 @@
       "Vercel"
     ],
     "imageUrl": "/assets/ufc-landingpage-12-17-2025.png",
+    "description": "The public marketing site for UFC Calendar, refreshed with a cleaner fan-facing story and modern landing-page patterns.",
     "liveDemoLink": "https://ufccalendar.tech/",
     "githubRepoLink": ""
+  },
+  {
+    "title": "PromptCost Proxy Worker",
+    "role": "Design & Full-stack Dev",
+    "techStack": [
+      "Cloudflare Workers",
+      "TypeScript",
+      "OpenAI API",
+      "Cloudflare KV"
+    ],
+    "imageUrl": "/assets/promptcost-proxy-worker-thumb.webp",
+    "description": "A secure serverless gateway for OpenAI API traffic with centralized authentication, request logging, and cost visibility.",
+    "liveDemoLink": "https://promptcost-proxy.johnissack997.workers.dev/",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "Meme Genius AI",
+    "role": "Design & Full-stack Dev",
+    "techStack": [
+      "Vercel",
+      "Next.js",
+      "TypeScript",
+      "CSS"
+    ],
+    "imageUrl": "/assets/meme-genius-ai-thumb.webp",
+    "description": "A playful AI meme gallery and web experience built with Next.js and deployed on Vercel.",
+    "liveDemoLink": "https://meme-genius-ai.vercel.app/",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "Meme Genius AI - Automated X Content Poster",
+    "role": "Design & Full-stack Dev",
+    "techStack": [
+      "TypeScript",
+      "Cloudflare Workers",
+      "X API",
+      "OpenAI API",
+      "Cloudflare KV",
+      "Wrangler",
+      "Vitest"
+    ],
+    "imageUrl": "/assets/meme-genius-ai-x-thumb.webp",
+    "description": "A Cloudflare Worker that generates and posts AI-assisted meme content to X with scheduled automation and tests.",
+    "liveDemoLink": "https://x.com/MemeGeniusAI",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "Personal Portfolio",
+    "role": "Design & Full-stack Dev",
+    "techStack": [
+      "Lit",
+      "TypeScript",
+      "GitHub Pages",
+      "ESBuild",
+      "GitHub Actions",
+      "CSS"
+    ],
+    "imageUrl": "/assets/portfolio-thumb.png",
+    "description": "This site: a compact shipping ledger designed around proof, public releases, and the fastest path from idea to deployed artifact.",
+    "liveDemoLink": "https://issackj1.github.io",
+    "githubRepoLink": "https://github.com/issackj1/issackj1.github.io"
   }
 ]

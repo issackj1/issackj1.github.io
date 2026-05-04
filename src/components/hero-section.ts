@@ -1,23 +1,24 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import './metrics-counter.ts';
 
 @customElement('hero-section')
 export class HeroSection extends LitElement {
   static styles = css`
     :host {
       display: block;
-      padding: 16vh 0 8vh 0;
+      padding: 14vh 0 8vh 0;
       border-bottom: 1px solid var(--border);
+      position: relative;
     }
 
     .statement {
       font-family: var(--font-display);
       font-size: var(--type-display);
-      font-weight: 400;
+      font-weight: 500;
       font-style: italic;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+      max-width: 12ch;
       margin: 0 0 2rem 0;
       color: var(--ink);
     }
@@ -26,7 +27,7 @@ export class HeroSection extends LitElement {
       font-size: var(--type-body);
       line-height: 1.7;
       color: var(--gray);
-      max-width: 540px;
+      max-width: 650px;
       margin: 0 0 2rem 0;
     }
 
@@ -34,7 +35,9 @@ export class HeroSection extends LitElement {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
       font-family: var(--font-mono);
       font-size: var(--type-mono);
       color: var(--gray);
@@ -50,7 +53,8 @@ export class HeroSection extends LitElement {
       font-size: 1.5rem;
       font-weight: 500;
       color: var(--ink);
-      font-family: var(--font-body);
+      font-family: var(--font-display);
+      font-style: italic;
     }
 
     .evidence-label {
@@ -62,15 +66,28 @@ export class HeroSection extends LitElement {
       display: inline-block;
       font-size: var(--type-body);
       font-weight: 500;
-      color: var(--ink);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 1px;
-      transition: text-decoration-thickness var(--transition);
+      color: var(--paper);
+      background: var(--ink);
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--ink);
+      transition: transform var(--transition), background var(--transition), color var(--transition);
     }
 
     .cta:hover {
-      text-decoration-thickness: 2px;
+      transform: translateY(-2px);
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--paper);
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 1.25rem;
     }
 
     .loading-text, .error-message {
@@ -80,19 +97,20 @@ export class HeroSection extends LitElement {
   `;
 
   @property({ type: String })
-  headline = 'I build products that ship.';
+  headline = 'Software with receipts.';
 
   @property({ type: String })
-  subhead = 'Full-stack developer. From concept to deployment, I create software people actually use.';
+  subhead = 'Product engineer shipping AI tutors, clinical simulators, stream tools, private CRMs, and public software — measured by deployed systems, not mockups.';
 
   @property({ type: String })
-  ctaText = 'See the work ↓';
+  ctaText = 'Read the ledger ↓';
 
   @property({ type: String })
   ctaLink = '#projects';
 
   @state() private _totalProductsShipped: number | null = null;
   @state() private _monthsActive: number | null = null;
+  @state() private _liveSystems: number | null = null;
   @state() private _isLoadingStats = true;
   @state() private _statsError: string | null = null;
 
@@ -127,8 +145,9 @@ export class HeroSection extends LitElement {
       const statsData = await response.json();
 
       this._totalProductsShipped = statsData.totalProductsShipped;
+      this._liveSystems = statsData.liveSystems;
 
-      const latestReleaseDate = "2025-12-17";
+      const latestReleaseDate = statsData.latestReleaseDate || new Date().toISOString().slice(0, 10);
       if (statsData.firstReleaseDate) {
         this._monthsActive = this._calculateMonthsBetween(statsData.firstReleaseDate, latestReleaseDate);
       } else {
@@ -137,8 +156,6 @@ export class HeroSection extends LitElement {
     } catch (e) {
       console.error('Error fetching stats data:', e);
       this._statsError = 'Could not load stats.';
-      this._totalProductsShipped = 4;
-      this._monthsActive = 16;
     } finally {
       this._isLoadingStats = false;
     }
@@ -146,24 +163,35 @@ export class HeroSection extends LitElement {
 
   render() {
     return html`
+      <div class="kicker">Issack John / shipping ledger</div>
       <h1 class="statement">${this.headline}</h1>
       
       <p class="bio">${this.subhead}</p>
       
-      <div class="evidence">
-        <div class="evidence-item">
-          <span class="evidence-value">
-            ${this._isLoadingStats ? '—' : this._totalProductsShipped}
-          </span>
-          <span class="evidence-label">Products Shipped</span>
+      ${this._statsError ? html`
+        <div class="error-message">${this._statsError}</div>
+      ` : html`
+        <div class="evidence">
+          <div class="evidence-item">
+            <span class="evidence-value">
+              ${this._isLoadingStats ? '—' : this._totalProductsShipped}
+            </span>
+            <span class="evidence-label">Products Shipped</span>
+          </div>
+          <div class="evidence-item">
+            <span class="evidence-value">
+              ${this._isLoadingStats ? '—' : this._liveSystems}
+            </span>
+            <span class="evidence-label">Live Systems</span>
+          </div>
+          <div class="evidence-item">
+            <span class="evidence-value">
+              ${this._isLoadingStats ? '—' : this._monthsActive}
+            </span>
+            <span class="evidence-label">Months Active</span>
+          </div>
         </div>
-        <div class="evidence-item">
-          <span class="evidence-value">
-            ${this._isLoadingStats ? '—' : this._monthsActive}
-          </span>
-          <span class="evidence-label">Months Active</span>
-        </div>
-      </div>
+      `}
       
       <a href="${this.ctaLink}" class="cta">${this.ctaText}</a>
     `;

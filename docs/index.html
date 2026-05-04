@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Issack John | Full-Stack Developer</title>
-    <meta name="description" content="A portfolio showcasing shipped products and projects. Building products, faster.">
+    <title>Issack John | Product Engineer</title>
+    <meta name="description" content="A shipping ledger for product engineering work: AI tutors, clinical simulations, stream tools, CRM systems, and public software.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
         rel="stylesheet">
 
     <link rel="icon" href="/assets/favicon.ico" sizes="any">
@@ -20,44 +20,45 @@
     <link rel="manifest" href="/manifest.json">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Issack John | Full-Stack Developer">
+    <meta property="og:title" content="Issack John | Product Engineer">
     <meta property="og:description"
-        content="A portfolio showcasing shipped products and projects. Building products, faster.">
+        content="A shipping ledger for product engineering work: AI tutors, clinical simulations, stream tools, CRM systems, and public software.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://issackj1.github.io/">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Issack John | Full-Stack Developer">
+    <meta name="twitter:title" content="Issack John | Product Engineer">
     <meta name="twitter:description"
-        content="A portfolio showcasing shipped products and projects. Building products, faster.">
+        content="A shipping ledger for product engineering work: AI tutors, clinical simulations, stream tools, CRM systems, and public software.">
 
     <style>
         :root {
-            /* 
-             * THE PROOF
-             * A portfolio as evidence. No decoration. Pure confidence.
-             * Typography does all the work. Restraint IS the design.
+            /*
+             * THE SHIPPING LEDGER
+             * Editorial proof, hard edges, deployed systems. Sparse by default;
+             * the work is the ornament.
              */
 
             /* Type Scale */
-            --type-display: clamp(2.75rem, 8vw, 5rem);
-            --type-headline: clamp(1.5rem, 4vw, 2.25rem);
+            --type-display: clamp(3rem, 9vw, 6.75rem);
+            --type-headline: clamp(1.55rem, 4vw, 2.6rem);
             --type-body: 1.0625rem;
             --type-small: 0.875rem;
             --type-mono: 0.8125rem;
 
             /* Fonts */
-            --font-display: 'Times New Roman', 'Times', Georgia, serif;
-            --font-body: 'Inter', -apple-system, system-ui, sans-serif;
+            --font-display: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+            --font-body: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
             --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
 
             /* Light mode */
-            --ink: #000000;
-            --paper: #FFFFFF;
-            --gray: #555555;
-            --faint: #F0F0F0;
-            --border: #E0E0E0;
+            --ink: #111111;
+            --paper: #fbf7ef;
+            --gray: #5d574c;
+            --faint: #efe7d8;
+            --border: #d7cbb7;
+            --accent: #c13a17;
 
             /* Zero decoration */
             --radius: 0;
@@ -68,11 +69,12 @@
         }
 
         :root[data-theme="dark"] {
-            --ink: #FFFFFF;
-            --paper: #0A0A0A;
-            --gray: #AAAAAA;
-            --faint: #151515;
-            --border: #252525;
+            --ink: #f3ead8;
+            --paper: #080807;
+            --gray: #aaa08e;
+            --faint: #171410;
+            --border: #30291f;
+            --accent: #ff6a38;
         }
 
         * {
@@ -86,7 +88,12 @@
         body {
             font-family: var(--font-body);
             font-size: var(--type-body);
-            background: var(--paper);
+            background:
+                linear-gradient(90deg, color-mix(in srgb, var(--border) 36%, transparent) 1px, transparent 1px),
+                linear-gradient(180deg, color-mix(in srgb, var(--border) 30%, transparent) 1px, transparent 1px),
+                radial-gradient(circle at 84% 8%, color-mix(in srgb, var(--accent) 13%, transparent), transparent 24rem),
+                var(--paper);
+            background-size: 44px 44px, 44px 44px, auto, auto;
             color: var(--ink);
             margin: 0;
             padding: 0;
@@ -99,6 +106,7 @@
             max-width: var(--max-width);
             margin: 0 auto;
             padding: 0 2rem;
+            background: var(--paper);
         }
 
         ::selection {
