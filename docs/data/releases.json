@@ -71,6 +71,22 @@
     "type": "release"
   },
   {
+    "id": "portfolio-v1-release",
+    "date": "2025-05-07",
+    "title": "Portfolio v1 launched",
+    "description": "Initial release of the GitHub Pages portfolio built with Lit, showcasing shipped projects and a live shipping timeline.",
+    "link": "https://issackj1.github.io",
+    "type": "release"
+  },
+  {
+    "id": "my-first-worker-launch",
+    "date": "2025-04-29",
+    "title": "Automated X content poster launched",
+    "description": "Launched the Cloudflare Worker for automated X content posting with AI-generated text and images.",
+    "link": "https://x.com/MemeGeniusAI",
+    "type": "release"
+  },
+  {
     "id": "meme-genius-ai-website-launch",
     "date": "2024-01-27",
     "title": "Meme Genius AI website launched",

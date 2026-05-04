@@ -78,13 +78,31 @@
     "techStack": [
       "TypeScript",
       "Chrome Extension APIs",
+      "Node.js",
+      "Python",
+      "Serverless Framework",
       "AWS Lambda",
       "DynamoDB",
-      "Serverless"
+      "Material-UI",
+      "Discord Webhooks",
+      "Docker"
     ],
     "imageUrl": "/assets/ufc-extension-thumb.webp",
-    "description": "A Chrome extension and backend pipeline for UFC event schedules, live updates, reminders, and fan-friendly calendar access.",
+    "description": "A Chrome extension and backend pipeline for UFC event schedules, live updates, reminders, Discord notifications, and fan-friendly calendar access.",
     "liveDemoLink": "https://chromewebstore.google.com/detail/pdagojbjdekpdicaefbiolkpgobiaoch",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "UFC Calendar Landing Page",
+    "role": "Design & Full-stack Dev",
+    "techStack": [
+      "React",
+      "Material-UI (MUI)",
+      "Vercel"
+    ],
+    "imageUrl": "/assets/ufc-landingpage-12-17-2025.png",
+    "description": "The public marketing site for UFC Calendar, refreshed with a cleaner fan-facing story and modern landing-page patterns.",
+    "liveDemoLink": "https://ufccalendar.tech/",
     "githubRepoLink": ""
   },
   {
@@ -102,6 +120,37 @@
     "githubRepoLink": ""
   },
   {
+    "title": "Meme Genius AI",
+    "role": "Design & Full-stack Dev",
+    "techStack": [
+      "Vercel",
+      "Next.js",
+      "TypeScript",
+      "CSS"
+    ],
+    "imageUrl": "/assets/meme-genius-ai-thumb.webp",
+    "description": "A playful AI meme gallery and web experience built with Next.js and deployed on Vercel.",
+    "liveDemoLink": "https://meme-genius-ai.vercel.app/",
+    "githubRepoLink": ""
+  },
+  {
+    "title": "Meme Genius AI - Automated X Content Poster",
+    "role": "Design & Full-stack Dev",
+    "techStack": [
+      "TypeScript",
+      "Cloudflare Workers",
+      "X API",
+      "OpenAI API",
+      "Cloudflare KV",
+      "Wrangler",
+      "Vitest"
+    ],
+    "imageUrl": "/assets/meme-genius-ai-x-thumb.webp",
+    "description": "A Cloudflare Worker that generates and posts AI-assisted meme content to X with scheduled automation and tests.",
+    "liveDemoLink": "https://x.com/MemeGeniusAI",
+    "githubRepoLink": ""
+  },
+  {
     "title": "Personal Portfolio",
     "role": "Design & Full-stack Dev",
     "techStack": [
@@ -109,7 +158,8 @@
       "TypeScript",
       "GitHub Pages",
       "ESBuild",
-      "GitHub Actions"
+      "GitHub Actions",
+      "CSS"
     ],
     "imageUrl": "/assets/portfolio-thumb.png",
     "description": "This site: a compact shipping ledger designed around proof, public releases, and the fastest path from idea to deployed artifact.",
